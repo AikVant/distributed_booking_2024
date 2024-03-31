@@ -1,0 +1,13 @@
+[
+  {
+    "accType": "Hotel",
+    "roomName": "104",
+    "numOfPersons": "5",
+    "area": {"city": "Athens", "road": "Voulis", "number": "45", "zipCode": "13542"},
+    "stars": "4",
+    "numOfReviews": "15",
+    "roomImage": "url",
+    "available": "true"
+  }
+
+]
