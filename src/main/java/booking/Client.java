@@ -12,10 +12,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Client extends Thread {
-    Accomodation accomodation;
+    Accommodation accommodation;
 
-    Client(Accomodation accomodation) {
-        this.accomodation = accomodation;
+    Client(Accommodation accommodation) {
+        this.accommodation = accommodation;
     }
 
     public void run() {
@@ -35,10 +35,10 @@ public class Client extends Thread {
 
 
             /* Write the object */
-            out.writeObject(accomodation);
-            Accomodation accomodation1 = (Accomodation) in.readObject();
+            out.writeObject(accommodation);
+            Accommodation accommodation1 = (Accommodation) in.readObject();
 
-            System.out.println("Server: " + accomodation1.toString());
+            System.out.println("Server: " + accommodation1.toString());
 
         } catch (UnknownHostException unknownHost) {
             System.err.println("You are trying to connect to an unknown host!");
@@ -58,34 +58,8 @@ public class Client extends Thread {
     }
 
     public static void main(String[] args) {
-        String data = "";
-        try{
-            data = new String(Files.readAllBytes(Paths.get("src/main/java/booking/accommodations.json")));
-        }catch (IOException e){
-            e.getStackTrace();
-        }
-        JSONArray jsonArray = new JSONArray(data);
+        AccommodationList list = new AccommodationList();
+        System.out.println(list);
 
-        JSONObject jsonObject = jsonArray.getJSONObject(0);
-        String accType = jsonObject.getString("accType");
-        String roomName = jsonObject.getString("roomName");
-        String numOfPersons = jsonObject.getString("numOfPersons");
-        String area = String.valueOf(jsonObject.getJSONObject("area"));
-        String stars = jsonObject.getString("stars");
-        String numOfReviews = jsonObject.getString("numOfReviews");
-        String roomImage = jsonObject.getString("roomImage");
-        String available = jsonObject.getString("available");
-
-        System.out.println("accType: " + accType);
-        System.out.println("roomName: " + roomName);
-        System.out.println("numOfPersons: " + numOfPersons);
-        System.out.println("area: " + area);
-        System.out.println("stars: " + stars);
-        System.out.println("numOfReviews: " + numOfReviews);
-        System.out.println("roomImage: " +roomImage);
-        System.out.println("available: " + available);
-
-        Accomodation accomodation = new Accomodation(jsonObject);
-        new Client(accomodation);
     }
 }

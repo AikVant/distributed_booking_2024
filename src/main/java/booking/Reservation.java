@@ -1,22 +1,22 @@
 package booking;
 
 public class Reservation {
-    private Accomodation accomodation;
+    private Accommodation accommodation;
     private Tenant tenant;
     private Integer numOfPeople;
     private ReservationDate date;
 
     public Reservation() {
     }
-    public Reservation(Accomodation accomodation, Tenant tenant, Integer numOfPeople, ReservationDate date) {
-        this.accomodation = accomodation;
+    public Reservation(Accommodation accommodation, Tenant tenant, Integer numOfPeople, ReservationDate date) {
+        this.accommodation = accommodation;
         this.tenant = tenant;
         this.numOfPeople = numOfPeople;
         this.date = date;
     }
 
-    public Accomodation getAccomodation() {
-        return accomodation;
+    public Accommodation getAccomodation() {
+        return accommodation;
     }
 
     public Tenant getTenant() {
@@ -31,8 +31,8 @@ public class Reservation {
         return date;
     }
 
-    public void setAccomodation(Accomodation accomodation) {
-        this.accomodation = accomodation;
+    public void setAccomodation(Accommodation accommodation) {
+        this.accommodation = accommodation;
     }
 
     public void setTenant(Tenant tenant) {
@@ -50,7 +50,7 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation{" +
-                "accomodation=" + accomodation +
+                "accomodation=" + accommodation +
                 ", tenant=" + tenant +
                 ", numOfPeople=" + numOfPeople +
                 ", date=" + date +

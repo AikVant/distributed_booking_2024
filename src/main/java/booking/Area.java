@@ -22,10 +22,12 @@ public class Area {
                 arrayOfKeys.add(key);
             }
         }
+
         this.city = arrayOfKeys.get(0);
         this.road = arrayOfKeys.get(1);
         this.number = arrayOfKeys.get(2);
         this.zipCode = arrayOfKeys.get(3);
+
 //        this.city = obj.optString("city", "");
 //        this.road = obj.optString("road", "");
 //        this.number = obj.optString("number", "");

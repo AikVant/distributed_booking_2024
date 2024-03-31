@@ -1,7 +1,7 @@
 package booking;
 
 public class SearchImplementation {
-    public Accomodation searchAccommodations(Area area, ReservationDate date){
+    public Accommodation searchAccommodations(Area area, ReservationDate date){
         return null;
     }
 }

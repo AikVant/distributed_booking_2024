@@ -1,16 +1,12 @@
 package booking;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
+import java.nio.file.Path;
 import static java.lang.Integer.valueOf;
 
-public class Accomodation implements Serializable {
+public class Accommodation implements Serializable {
     private String accType = "";
     private String roomName;
     private Integer numOfPersons;
@@ -20,13 +16,15 @@ public class Accomodation implements Serializable {
     private Image roomImage;
     private boolean available = false;
 
-    public Accomodation() {
+    public Accommodation() {
     }
-    public Accomodation(JSONObject obj){
+    public Accommodation(JSONObject obj){
         this.accType = obj.getString("accType");
         this.roomName = obj.getString("roomName");
         this.numOfPersons = valueOf(obj.getString("numOfPersons"));
-        this.area = new Area(obj);
+        JSONObject jsonArea = obj.getJSONObject("area");
+        this.area = new Area(jsonArea.getString("city"), jsonArea.getString("road"),
+                jsonArea.getString("number"), jsonArea.getString("zipCode"));
         this.stars = valueOf(obj.getString("stars"));
         this.numOfReviews = valueOf(obj.getString("numOfReviews"));
         this.roomImage = new Image(obj);
@@ -34,7 +32,7 @@ public class Accomodation implements Serializable {
 
     }
 
-    public Accomodation(String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage) {
+    public Accommodation(String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage) {
         this.roomName = roomName;
         this.numOfPersons = numOfPersons;
         this.area = area;
@@ -120,39 +118,6 @@ public class Accomodation implements Serializable {
     }
 
     public static void main(String[] args) throws IOException {
-        String data = "";
-        try{
-        data = new String(Files.readAllBytes(Paths.get("src/main/java/booking/accommodations.json")));
-        }catch (IOException e){
-            e.getStackTrace();
-        }
-        JSONArray jsonArray = new JSONArray(data);
-
-        JSONObject  jsonObject = jsonArray.getJSONObject(0);
-        String accType = jsonObject.getString("accType");
-        String roomName = jsonObject.getString("roomName");
-        String numOfPersons = jsonObject.getString("numOfPersons");
-        String area = String.valueOf(jsonObject.getJSONObject("area"));
-        String stars = jsonObject.getString("stars");
-        String numOfReviews = jsonObject.getString("numOfReviews");
-        String roomImage = jsonObject.getString("roomImage");
-        String available = jsonObject.getString("available");
-
-        System.out.println("accType: " + accType);
-        System.out.println("roomName: " + roomName);
-        System.out.println("numOfPersons: " + numOfPersons);
-        System.out.println("area: " + area);
-        System.out.println("stars: " + stars);
-        System.out.println("numOfReviews: " + numOfReviews);
-        System.out.println("roomImage: " +roomImage);
-        System.out.println("available: " + available);
-
-        Accomodation accomodation = new Accomodation(jsonObject);
-        System.out.println();
-
-        System.out.println("City: " + accomodation.getArea().getCity());
-        System.out.println("Road: " + accomodation.getArea().getRoad());
-        System.out.println("Number: " + accomodation.getArea().getNumber());
-        System.out.println("ZipCode: " + accomodation.getArea().getZipCode());
+        ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
     }
 }

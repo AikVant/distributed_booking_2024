@@ -21,8 +21,8 @@ public class ClientHandler extends Thread {
 
     public void run() {
         try {
-            Accomodation accomodation = (Accomodation) in.readObject();
-            out.writeObject(accomodation);
+            Accommodation accommodation = (Accommodation) in.readObject();
+            out.writeObject(accommodation);
             out.flush();
 
 

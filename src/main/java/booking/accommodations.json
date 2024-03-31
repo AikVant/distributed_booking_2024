@@ -8,6 +8,16 @@
     "numOfReviews": "15",
     "roomImage": "url",
     "available": "true"
+  },
+  {
+    "accType": "Mezoneta",
+    "roomName": "205",
+    "numOfPersons": "4",
+    "area": {"city": "Thessaloniki", "road": "Leukos Pyrgos", "number": "64", "zipCode": "20562"},
+    "stars": "3",
+    "numOfReviews": "10",
+    "roomImage": "url2",
+    "available": "true"
   }
 
 ]
