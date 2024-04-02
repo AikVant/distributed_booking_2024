@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Client extends Thread {
@@ -58,7 +59,16 @@ public class Client extends Thread {
     }
 
     public static void main(String[] args) {
-        AccommodationList list = new AccommodationList();
+        // list from reading json file
+        AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
+        //System.out.println(list);
+        /**
+         * list after Manager input of new Accommodation
+         * calls AccommodationList.addAccommodation()
+         * then calls Accommodation.createAccommodation()
+         * and with Scanner(System.in) takes input of Manager
+         */
+        list.addAccommodation();
         System.out.println(list);
 
     }

@@ -6,18 +6,52 @@
     "area": {"city": "Athens", "road": "Voulis", "number": "45", "zipCode": "13542"},
     "stars": "4",
     "numOfReviews": "15",
-    "roomImage": "url",
-    "available": "true"
+    "roomImage": "url"
+  },
+  {
+    "accType": "Mezoneta",
+    "roomName": "235",
+    "numOfPersons": "4",
+    "area": {"city": "Thessaloniki", "road": "Leukos Pyrgos", "number": "64", "zipCode": "20562"},
+    "stars": "3",
+    "numOfReviews": "10",
+    "roomImage": "url2"
+  },
+  {
+    "accType": "Hotel",
+    "roomName": "101",
+    "numOfPersons": "2",
+    "area": {"city": "Volos", "road": "Averof", "number": "12", "zipCode": "78912"},
+    "stars": "4",
+    "numOfReviews": "30",
+    "roomImage": "url"
+  },
+  {
+    "accType": "Mezoneta",
+    "roomName": "201",
+    "numOfPersons": "4",
+    "area": {"city": "Athina", "road": "Santorinis", "number": "112", "zipCode": "56734"},
+    "stars": "3",
+    "numOfReviews": "25",
+    "roomImage": "url2"
+  },
+  {
+    "accType": "Hotel",
+    "roomName": "130",
+    "numOfPersons": "2",
+    "area": {"city": "Thessaloniki", "road": "Thrakis", "number": "12", "zipCode": "18912"},
+    "stars": "4",
+    "numOfReviews": "30",
+    "roomImage": "url"
   },
   {
     "accType": "Mezoneta",
     "roomName": "205",
     "numOfPersons": "4",
-    "area": {"city": "Thessaloniki", "road": "Leukos Pyrgos", "number": "64", "zipCode": "20562"},
+    "area": {"city": "Athina", "road": "Louloudiwn", "number": "112", "zipCode": "91734"},
     "stars": "3",
-    "numOfReviews": "10",
-    "roomImage": "url2",
-    "available": "true"
+    "numOfReviews": "32",
+    "roomImage": "url2"
   }
 
 ]

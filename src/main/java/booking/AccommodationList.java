@@ -10,7 +10,16 @@ public class AccommodationList {
     List<Accommodation> accommodationList = new ArrayList<>();
 
     public AccommodationList(){
-        for (int i = 0; i < 2; i++){
+    }
+
+    /**
+     * reads JSON file and fills the array list of accommodations and the map of available rooms
+     * @param path
+     */
+    public AccommodationList(Path path){
+        int size = ReadJson.getJsonArray(path).length();
+        AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
+        for (int i = 0; i < size; i++){
             Accommodation accommodation = ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), i);
             accommodationList.add(accommodation);
         }
@@ -18,6 +27,15 @@ public class AccommodationList {
 
     public List<Accommodation> getAccommodationList() {
         return accommodationList;
+    }
+
+    /**
+     * Adds new Accommodation(created from Manager) to accommodationList
+     */
+    public void addAccommodation(){
+        Accommodation accommodation = new Accommodation();
+        Accommodation  newAccommodation = accommodation.createAccommodation();
+        accommodationList.add(newAccommodation);
     }
     public int getLengthOfAccommodationList(){
         return accommodationList.size();
@@ -29,8 +47,8 @@ public class AccommodationList {
     @Override
     public String toString() {
         String s = "";
-        for (int i = 0; i < accommodationList.size(); i++){
-            s += accommodationList.get(i) + "\n";
+        for (Accommodation accommodation : accommodationList) {
+            s += accommodation + "\n";
         }
         return s;
     }

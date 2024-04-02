@@ -3,35 +3,51 @@ package booking;
 import java.util.Date;
 
 public class ReservationDate {
-    private Date start;
-    private Date end;
+    private int day;
+    private int month;
+    private int year;
 
-    public ReservationDate(Date start, Date end) {
-        this.start = start;
-        this.end = end;
+    public ReservationDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
 
-    public Date getStart() {
-        return start;
+
+    public int getDay() {
+        return day;
     }
 
-    public Date getEnd() {
-        return end;
+
+    public int getMonth() {
+        return month;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+
+    public int getYear() {
+        return year;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override
     public String toString() {
-        return "ReservationDate{" +
-                "start=" + start +
-                ", end=" + end +
-                '}';
+        return String.format("%02d/%02d/%04d", day, month, year);
+    }
+
+    public static void main(String[] args) {
+
     }
 }
