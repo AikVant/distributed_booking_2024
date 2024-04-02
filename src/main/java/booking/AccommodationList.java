@@ -20,7 +20,7 @@ public class AccommodationList {
         int size = ReadJson.getJsonArray(path).length();
         AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
         for (int i = 0; i < size; i++){
-            Accommodation accommodation = ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), i);
+            Accommodation accommodation = ReadJson.readFile(Path.of("distributed_booking_2024/src/main/java/booking/accommodations.json"), i);
             accommodationList.add(accommodation);
         }
     }

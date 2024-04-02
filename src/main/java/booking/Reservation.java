@@ -15,7 +15,7 @@ public class Reservation {
         this.date = date;
     }
 
-    public Accommodation getAccomodation() {
+    public Accommodation getAccommodation() {
         return accommodation;
     }
 
@@ -31,7 +31,7 @@ public class Reservation {
         return date;
     }
 
-    public void setAccomodation(Accommodation accommodation) {
+    public void setAccommodation(Accommodation accommodation) {
         this.accommodation = accommodation;
     }
 
@@ -50,7 +50,7 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation{" +
-                "accomodation=" + accommodation +
+                "accommodation=" + accommodation +
                 ", tenant=" + tenant +
                 ", numOfPeople=" + numOfPeople +
                 ", date=" + date +
