@@ -10,3 +10,5 @@ getJsonArray(Path path) της κλάσης ReadJason αλλά διαβάζω 2 
 Στην κλάση AccommodationList έχω βάλει την addAccommodation η οποία καλεί την createAccomodation μέσα στην
 Accommodation.
 
+Έχω βάλει και κάποια σχόλια στην AvailabilityOfAccommodations.
+
