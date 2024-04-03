@@ -14,6 +14,7 @@ class Menu{
         Accommodation accommodationObj = new Accommodation();
         ReservationDateRange reservationDateRangeObject = new ReservationDateRange();
         AvailabilityOfAccommodations availabilityObject = new AvailabilityOfAccommodations();
+        ReadJson readJsonObj = new ReadJson();
         Tenant tenantObj = new Tenant("Georgios Papadopoulos");
         Area areaObject = new Area();
         int Manager = 1;
@@ -68,7 +69,7 @@ class Menu{
         else {
             System.out.println("Filter by wished area : 1");
             System.out.println("Filter by wished date range : 2");
-            System.out.println("Filter by wished number of tenants : 3");
+            System.out.println("Filter by wished number of people : 3");
             System.out.println("Filter by wished price : 4");
             System.out.println("Filter by wished ranking : 5");
             int selection1 = scanner1.nextInt();
