@@ -17,10 +17,8 @@ public class Area {
     }
     public Area(JSONObject obj){
         ArrayList<String> arrayOfKeys = new ArrayList<>() ;
-        if (obj != null && obj.length() > 0){
-            for (String key : obj.keySet()){
-                arrayOfKeys.add(key);
-            }
+        if (obj != null && !obj.isEmpty()){
+            arrayOfKeys.addAll(obj.keySet());
         }
 
         this.city = arrayOfKeys.get(0);

@@ -1,21 +1,23 @@
 [
   {
-    "accType": "Hotel",
-    "roomName": "104",
+    "accType": "Luxury Hotel",
+    "roomName": "303",
     "numOfPersons": "5",
     "area": {"city": "Athens", "road": "Voulis", "number": "45", "zipCode": "13542"},
     "stars": "4",
     "numOfReviews": "15",
-    "roomImage": "url"
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\luxuryHotel.jpg",
+    "pricePerNight": "35"
   },
   {
-    "accType": "Mezoneta",
+    "accType": "Bungalow",
     "roomName": "235",
     "numOfPersons": "4",
-    "area": {"city": "Thessaloniki", "road": "Leukos Pyrgos", "number": "64", "zipCode": "20562"},
+    "area": {"city": "Thessaloniki", "road": "White Tower", "number": "64", "zipCode": "20562"},
     "stars": "3",
     "numOfReviews": "10",
-    "roomImage": "url2"
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\bunTh.jpg",
+    "pricePerNight": "130"
   },
   {
     "accType": "Hotel",
@@ -24,16 +26,18 @@
     "area": {"city": "Volos", "road": "Averof", "number": "12", "zipCode": "78912"},
     "stars": "4",
     "numOfReviews": "30",
-    "roomImage": "url"
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\v.jpg",
+    "pricePerNight": "66"
   },
   {
-    "accType": "Mezoneta",
+    "accType": "Bed and Breakfast",
     "roomName": "201",
     "numOfPersons": "4",
     "area": {"city": "Athina", "road": "Santorinis", "number": "112", "zipCode": "56734"},
     "stars": "3",
     "numOfReviews": "25",
-    "roomImage": "url2"
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\bbAth.jpg",
+    "pricePerNight": "201"
   },
   {
     "accType": "Hotel",
@@ -42,16 +46,59 @@
     "area": {"city": "Thessaloniki", "road": "Thrakis", "number": "12", "zipCode": "18912"},
     "stars": "4",
     "numOfReviews": "30",
-    "roomImage": "url"
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\whiteTower.jpg",
+    "pricePerNight": "70"
   },
   {
-    "accType": "Mezoneta",
+    "accType": "Maisonette",
     "roomName": "205",
     "numOfPersons": "4",
     "area": {"city": "Athina", "road": "Louloudiwn", "number": "112", "zipCode": "91734"},
     "stars": "3",
     "numOfReviews": "32",
-    "roomImage": "url2"
-  }
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\maisonetteL.jpg",
+    "pricePerNight": "99"
+  },
+  {"accType": "Motel",
+    "roomName": "31",
+    "numOfPersons": "3",
+    "area": {"city": "Crete", "road": "Chaplin", "number": "11", "zipCode": "91097"},
+    "stars": "3",
+    "numOfReviews": "34",
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\crete.jpg",
+    "pricePerNight": "111"},
+  {"accType": "Resort",
+  "roomName": "701",
+  "numOfPersons": "8",
+  "area": {"city": "Scorpios", "road": "Ekavis", "number": "52", "zipCode": "45634"},
+  "stars": "5",
+  "numOfReviews": "10003",
+  "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\resort.jpg",
+  "pricePerNight": "999"},
+  {"accType": "Cabin",
+    "roomName": "5",
+    "numOfPersons": "4",
+    "area": {"city": "Trikala", "road": "Country Road", "number": "12", "zipCode": "17834"},
+    "stars": "5",
+    "numOfReviews": "320",
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\trikala.jpg",
+    "pricePerNight": "61"},
+  {"accType": "Apartment",
+    "roomName": "22",
+    "numOfPersons": "3",
+    "area": {"city": "Athens", "road": "Syndagma Square", "number": "2", "zipCode": "11434"},
+    "stars": "4",
+    "numOfReviews": "107",
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\athensAp.jpg",
+    "pricePerNight": "96"
 
+  },
+  {"accType": "Bed and Breakfast",
+    "roomName": "225",
+    "numOfPersons": "3",
+    "area": {"city": "Kifissia", "road": "Bouboulinas", "number": "1", "zipCode": "16404"},
+    "stars": "4",
+    "numOfReviews": "500",
+    "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\kifissiaBB.jpg",
+    "pricePerNight": "143"}
 ]

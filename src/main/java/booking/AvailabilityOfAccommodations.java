@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AvailabilityOfAccommodations implements Runnable{
-    private Map<String, ReservationDateRange> roomAvailability;
+    private final Map<String, ReservationDateRange> roomAvailability;
 
     @Override
     public void run() {

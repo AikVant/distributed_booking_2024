@@ -6,6 +6,7 @@ import java.net.Socket;
 
 public class Server {
     /* Define the socket that receives requests */
+
     ServerSocket server;
     Socket providerSocket = null;
 
