@@ -1,9 +1,10 @@
 package booking;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.nio.file.Path;
+import java.util.*;
 
 class Menu{
 
@@ -15,6 +16,7 @@ class Menu{
         ReservationDateRange reservationDateRangeObject = new ReservationDateRange();
         AvailabilityOfAccommodations availabilityObject = new AvailabilityOfAccommodations();
         ReadJson readJsonObj = new ReadJson();
+        Client clientObj;
         Tenant tenantObj = new Tenant("Georgios Papadopoulos");
         Area areaObject = new Area();
         int Manager = 1;
@@ -22,9 +24,10 @@ class Menu{
         boolean flag = false;
         int s = 0;
         Scanner scanner = new Scanner(System.in);
+
         while (!flag) {
-            System.out.println("Choose between Manager and Client mode!");
-            System.out.println("For Manager mode press 1 , for Client mode press 2");
+            System.out.println("Welcome! Please choose between Manager and Client mode!");
+            System.out.println("1 : MANAGER MODE --- 2 : CLIENT MODE ");
             int selection = scanner.nextInt();
             if(selection == Manager){
                 System.out.println("You are now ready to perform as a Manager!");
@@ -39,25 +42,28 @@ class Menu{
             }
 
         }
-        Scanner scanner1 = new Scanner(System.in);
+
+        //Scanner scanner1 = new Scanner(System.in);
         int selection;
         if(s == 1){
 
-            System.out.println("To change your accommodations to available press 1 :");
-            System.out.println("To add your accommodation press 2 :");
-            System.out.println("To add range of available dates press 3 :");
-            System.out.println("To view your booked accommodations press 4 :");
-            selection = scanner1.nextInt();
+            for (String string : Arrays.asList("1 : Change your accommodation to available. ",
+                    "2 : Add your accommodation.", "3 : To add range of available dates. ",
+                    "4 : To view your booked accommodations. ")) {
+                System.out.println(string);
+            }
+            selection = scanner.nextInt();
             switch (selection){
                 case 1:
-                    System.out.println("Enter the name of your accommodation : ");
-                    String selection2 = scanner1.nextLine();
+                    System.out.println("--Enter the name of your accommodation : ");
+                    String selection2 = scanner.nextLine();
                     reservationDateRangeObject.setAvailable(true);
-                    System.out.println("Your accommodation " + selection2 + "is now available");
+                    System.out.println("--Your accommodation " + selection2 + "is now available");
                     //reservationDateRangeObject.setTo();
                     //reservationDateRangeObject.setFrom();
                 case 2:
-                    accommodationObj.createAccommodation();
+                    selection2 = scanner.nextLine();
+                    //clientObj = new Client(selection2);
                 case 3:
                     //reservationDateRangeObject.setFrom(ReservationDate);
                     //reservationDateRangeObject.setTo();
@@ -67,17 +73,18 @@ class Menu{
 
             }
         else {
-            System.out.println("Filter by wished area : 1");
-            System.out.println("Filter by wished date range : 2");
-            System.out.println("Filter by wished number of people : 3");
-            System.out.println("Filter by wished price : 4");
-            System.out.println("Filter by wished ranking : 5");
-            int selection1 = scanner1.nextInt();
+            System.out.println("1:  Filter by area. ");
+            System.out.println("2 : Filter by date range. ");
+            System.out.println("3 : Filter by number of people. ");
+            System.out.println("4 : Filter by price. ");
+            System.out.println("5 : Filter by ranking. ");
+            System.out.println("6 : Logout. ");
+            int selection1 = scanner.nextInt();
 
             switch (selection1){
                 case 1:
                     System.out.println("Area name : ");
-                    String selection2 = scanner1.nextLine();
+                    String selection2 = scanner.nextLine();
                     //areaObject.getCity();
 
                 case 2:
@@ -87,11 +94,12 @@ class Menu{
                     //tenantObj.setName();
                 case 4:
                 case 5:
-                    System.out.println("Select raking from 1 to 5 stars : ");
+                    System.out.println("Select ranking from 1 to 5 stars : ");
+                    int rank = scanner.nextInt();
+
 
             }
         }
-        Accommodation e =  new Accommodation("Bed and Breakfast" , "202" , 3 , new Area("Corfu"), 2 , 10 , new Image("BBImage") , true);
-
+        scanner.close();
     }
 }
