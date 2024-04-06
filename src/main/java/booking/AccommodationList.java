@@ -8,6 +8,7 @@ import java.util.List;
 
 public class AccommodationList {
     List<Accommodation> accommodationList = new ArrayList<>();
+    int length;
 
     public AccommodationList(){
     }
@@ -20,15 +21,18 @@ public class AccommodationList {
         int size = ReadJson.getJsonArray(path).length();
         AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
         for (int i = 0; i < size; i++){
-            Accommodation accommodation = ReadJson.readFile(Path.of("distributed_booking_2024/src/main/java/booking/accommodations.json"), i);
+            Accommodation accommodation = ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), i);
             accommodationList.add(accommodation);
         }
+        this.length = size;
     }
 
     public List<Accommodation> getAccommodationList() {
         return accommodationList;
     }
-
+    public int getLength(){
+            return this.length;
+    }
     /**
      * Adds new Accommodation(created from Manager) to accommodationList
      */

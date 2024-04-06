@@ -67,6 +67,7 @@
     "numOfReviews": "34",
     "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\crete.jpg",
     "pricePerNight": "111"},
+
   {"accType": "Resort",
   "roomName": "701",
   "numOfPersons": "8",
@@ -75,6 +76,7 @@
   "numOfReviews": "10003",
   "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\resort.jpg",
   "pricePerNight": "999"},
+
   {"accType": "Cabin",
     "roomName": "5",
     "numOfPersons": "4",
@@ -83,6 +85,7 @@
     "numOfReviews": "320",
     "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\trikala.jpg",
     "pricePerNight": "61"},
+
   {"accType": "Apartment",
     "roomName": "22",
     "numOfPersons": "3",
@@ -93,6 +96,7 @@
     "pricePerNight": "96"
 
   },
+
   {"accType": "Bed and Breakfast",
     "roomName": "225",
     "numOfPersons": "3",
@@ -100,5 +104,7 @@
     "stars": "4",
     "numOfReviews": "500",
     "roomImage": "C:\\Users\\evach\\JAVA\\entry\\DS\\distributed_booking_2024\\src\\pictures\\kifissiaBB.jpg",
-    "pricePerNight": "143"}
+    "pricePerNight": "143"
+  }
+
 ]

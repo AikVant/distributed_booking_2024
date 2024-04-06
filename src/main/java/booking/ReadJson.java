@@ -37,7 +37,9 @@ public class ReadJson {
         String roomImage = jsonObject.getString("roomImage");
         //String available = jsonObject.getString("available");
 
-        return new Accommodation(jsonObject);
+        Accommodation accommodation = new Accommodation(jsonObject);
+
+        return accommodation;
     }
 }
 

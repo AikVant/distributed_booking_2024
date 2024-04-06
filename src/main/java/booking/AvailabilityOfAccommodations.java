@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AvailabilityOfAccommodations implements Runnable{
-    private final Map<String, ReservationDateRange> roomAvailability;
+    private Map<String, ReservationDateRange> roomAvailability;
 
     @Override
     public void run() {
@@ -97,15 +97,14 @@ public class AvailabilityOfAccommodations implements Runnable{
 
     public static void main(String[] args) {
         // Default gemisma tou list apo JSON file
-        Path path = Path.of("distributed_booking_2024/src/main/java/booking/accommodations.json");
-        AccommodationList list = new AccommodationList(path); // object
+        AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json")); // object
         // Default gemisma tou map apo JSON file
         AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations(); // object
 
         ReservationDate from = new ReservationDate(20, 4, 2024);
         ReservationDate to = new ReservationDate(30, 4, 2024);
 
-        availabilityOfAccommodations.addRoomAsAvailableFromJSON(path); // map
+        availabilityOfAccommodations.addRoomAsAvailableFromJSON(Path.of("src/main/java/booking/accommodations.json")); // map
 
         availabilityOfAccommodations.addRoomAsAvailableFromManager("lala", from, to);
         // ta typwnei opws akrivws ta exei parei apo to JSON

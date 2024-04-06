@@ -43,11 +43,12 @@ public class Client extends Thread {
 
         } catch (UnknownHostException unknownHost) {
             System.err.println("You are trying to connect to an unknown host!");
-        } catch (IOException | ClassNotFoundException ioException) {
+        } catch (IOException ioException) {
             ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         } finally {
             try {
-                assert in != null;
                 in.close();
                 out.close();
                 requestSocket.close();
@@ -59,9 +60,9 @@ public class Client extends Thread {
 
     public static void main(String[] args) {
         // list from reading json file
-        AccommodationList list = new AccommodationList(Path.of("distributed_booking_2024/src/main/java/booking/accommodations.json"));
+        AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
         //System.out.println(list);
-        /*
+        /**
          * list after Manager input of new Accommodation
          * calls AccommodationList.addAccommodation()
          * then calls Accommodation.createAccommodation()

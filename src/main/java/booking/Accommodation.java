@@ -156,6 +156,6 @@ public class Accommodation implements Serializable {
     }
 
     public static void main(String[] args) throws IOException {
-        ReadJson.readFile(Path.of("distributed_booking_2024/src/main/java/booking/accommodations.json"), 0);
+        ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
     }
 }
