@@ -3,20 +3,15 @@ package booking;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static booking.SplitToWorkers.*;
 
 public class Master extends Thread{
-    SplitToWorkers work1;
-    SplitToWorkers work2;
-    SplitToWorkers work3;
-
-    Master(SplitToWorkers work1, SplitToWorkers work2, SplitToWorkers work3){
-        this.work1 = work1;
-        this.work2 = work2;
-        this.work3 = work3;
-
-    }
+    public static List<Accommodation> worker1 = SplitToWorkers.worker1;
+    public static List<Accommodation> worker2 = SplitToWorkers.worker2;
+    public static List<Accommodation> worker3 = SplitToWorkers.worker3;
 
     public Master() {
 
@@ -99,6 +94,7 @@ public class Master extends Thread{
 
     public static void main(String[] args) {
         SplitToWorkers.setUpWorkersLists();
+
         System.out.println("-------------------worker1--------------------------------");
         for (Accommodation accommodation : worker1) {
             System.out.println(accommodation);

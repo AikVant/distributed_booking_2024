@@ -1,8 +1,6 @@
 package booking;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -11,10 +9,6 @@ import java.util.List;
 public class Worker extends Thread{
     ServerSocket worker;
     Socket providerSocket = null;
-    public List<Accommodation> worker1 = new ArrayList<>();
-    public List<Accommodation> worker2 = new ArrayList<>();
-    public List<Accommodation> worker3 = new ArrayList<>();
-
 
     public void run(){
         ObjectInputStream in = null;
@@ -25,6 +19,7 @@ public class Worker extends Thread{
             worker = new ServerSocket(3456);
 
             while (true){
+
                 /* Accept the connection */
                 providerSocket = worker.accept();
                 in = new ObjectInputStream(providerSocket.getInputStream());
@@ -37,9 +32,28 @@ public class Worker extends Thread{
                 System.out.println(in.readObject().toString());
                 System.out.println(in.readObject().toString());
 
+                // Δημιουργία νέου ByteArrayInputStream από τα σειριοποιημένα δεδομένα στη μνήμη
+                byte[] serializedDataInMemory1 = new byte[SplitToWorkers.sizeOfWorker1(SplitToWorkers.worker1)];
+                ByteArrayInputStream byteStream1 = new ByteArrayInputStream(serializedDataInMemory1);
+                in = new ObjectInputStream(byteStream1);
                 SplitToWorkers worker1 = (SplitToWorkers) in.readObject();
+                in.close();
+
+                byte[] serializedDataInMemory2 = new byte[SplitToWorkers.worker2.size()];
+                ByteArrayInputStream byteStream2 = new ByteArrayInputStream(serializedDataInMemory2);
+                in = new ObjectInputStream(byteStream2);
                 SplitToWorkers worker2 = (SplitToWorkers) in.readObject();
+                in.close();
+
+                byte[] serializedDataInMemory3 = new byte[SplitToWorkers.worker3.size()];
+                ByteArrayInputStream byteStream3 = new ByteArrayInputStream(serializedDataInMemory1);
+                in = new ObjectInputStream(byteStream3);
                 SplitToWorkers worker3 = (SplitToWorkers) in.readObject();
+                in.close();
+
+
+                // Επεξεργασία του αντικειμένου
+                System.out.println("Deserialized object: " + worker1 + " " + worker2 + " " + worker3);
 
                 /* Handle the request */
                 Thread t = new WorkerHandler(providerSocket);
