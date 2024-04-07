@@ -2,9 +2,10 @@ package booking;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Area {
+public class Area implements Serializable {
     private String city;
     private String road;
     private String number;

@@ -2,7 +2,9 @@ package booking;
 
 import org.json.JSONObject;
 
-public class Image {
+import java.io.Serializable;
+
+public class Image implements Serializable {
     private String address;
 
     public Image() {

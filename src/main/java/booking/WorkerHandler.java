@@ -5,32 +5,33 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ClientHandler extends Thread {
+public class WorkerHandler extends Thread {
     ObjectInputStream in;
     ObjectOutputStream out;
-    public ClientHandler(Socket connection) {
+
+    public WorkerHandler(Socket connection){
         try {
             out = new ObjectOutputStream(connection.getOutputStream());
             in = new ObjectInputStream(connection.getInputStream());
-        } catch (IOException e) {
+        }catch (IOException e){
             e.printStackTrace();
         }
+
     }
 
-    public void run() {
-        try {
-            Accommodation accommodation = (Accommodation) in.readObject();
-            out.writeObject(accommodation);
+    public void run(){
+        try{
+            Worker worker = (Worker) in.readObject();
+            out.writeObject(worker);
             out.flush();
 
-
-        } catch (IOException | ClassNotFoundException e) {
+        }catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
-        } finally {
+        }finally {
             try {
                 in.close();
                 out.close();
-            } catch (IOException ioException) {
+            }catch (IOException ioException){
                 ioException.printStackTrace();
             }
         }
