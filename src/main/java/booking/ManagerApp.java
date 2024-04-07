@@ -1,6 +1,14 @@
 package booking;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ManagerApp {
@@ -22,8 +30,10 @@ public class ManagerApp {
             while (choice != 0) {
                 System.out.println("1. Add Accommodation");
                 System.out.println("2. View Bookings");
+                System.out.println("3. Send All Accommodations");
                 System.out.println("0. Exit");
                 System.out.print("Enter choice: ");
+
                 choice = scanner.nextInt();
                 scanner.nextLine(); // consume newline
 
@@ -33,6 +43,9 @@ public class ManagerApp {
                         break;
                     case 2:
                         viewBookings(scanner);
+                        break;
+                    case 3:
+                        sendAllAccommodations();
                         break;
                     case 0:
                         System.out.println("Exiting.");
@@ -52,6 +65,21 @@ public class ManagerApp {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    private void sendAllAccommodations(){
+      AccommodationList accommodationList = new AccommodationList(Paths.get("src/main/java/booking/accommodations.json"));
+      List<Accommodation> allAccommodations = accommodationList.getAccommodationList();
+      for(Accommodation accommodation : allAccommodations){
+          JSONObject jsonAccommodation = accommodation.toJson();
+          out.println(jsonAccommodation.toString());
+      }
+        try{
+            String response = in.readLine();
+            System.out.println("Response from Master: " + response);
+        } catch (IOException e){
+            System.err.println("Error receiving response from Master");
+            e.printStackTrace();
         }
     }
 

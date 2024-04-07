@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccommodationList {
-    List<Accommodation> accommodationList = new ArrayList<>();
+    private List<Accommodation> accommodationList = new ArrayList<>();
     int length;
 
     public AccommodationList(){
@@ -19,7 +19,7 @@ public class AccommodationList {
      */
     public AccommodationList(Path path){
         int size = ReadJson.getJsonArray(path).length();
-        AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
+        //AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
         for (int i = 0; i < size; i++){
             Accommodation accommodation = ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), i);
             accommodationList.add(accommodation);
@@ -27,23 +27,28 @@ public class AccommodationList {
         this.length = size;
     }
 
-    public List<Accommodation> getAccommodationList() {
+    /*public static List<Accommodation> getAccommodationList() {
         return accommodationList;
-    }
+    }*/
+
     public int getLength(){
-            return this.length;
+        return this.length;
     }
     /**
      * Adds new Accommodation(created from Manager) to accommodationList
      */
-    public void addAccommodation(){
+    /*public static void addAccommodation(){
         Accommodation accommodation = new Accommodation();
         Accommodation  newAccommodation = accommodation.createAccommodation();
         accommodationList.add(newAccommodation);
+    }*/
+
+    public  void addAccommodation(Accommodation accommodation){
+        accommodationList.add(accommodation);
     }
 
-    public void addAccommodation(Accommodation accommodation){
-        accommodationList.add(accommodation);
+    public List<Accommodation> getAccommodationList(){
+        return this.accommodationList;
     }
 
     public int getLengthOfAccommodationList(){
@@ -55,14 +60,14 @@ public class AccommodationList {
 
     @Override
     public String toString() {
-        String s = "";
-        for (Accommodation accommodation : accommodationList) {
-            s += accommodation + "\n";
+        StringBuilder s = new StringBuilder();
+        for (Accommodation accommodation : this.accommodationList) {
+            s.append(accommodation.toString()).append("\n");
         }
-        return s;
+        return s.toString();
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
         System.out.println(list);
     }

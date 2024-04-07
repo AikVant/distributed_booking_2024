@@ -68,7 +68,7 @@ public class Client extends Thread {
          * then calls Accommodation.createAccommodation()
          * and with Scanner(System.in) takes input of Manager
          */
-        list.addAccommodation();
+        //list.addAccommodation();
         System.out.println(list);
 
     }
