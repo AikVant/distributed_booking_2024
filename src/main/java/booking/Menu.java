@@ -212,7 +212,7 @@ public class Menu {
             System.out.println(STR."No accommodations found that can accommodate \{numberOfPeople} people.");
         }
     }
-    /*private static void filterByPrice() {
+    /**private static void filterByPrice() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Filtering by price...");
         System.out.print("Enter the minimum price: ");
