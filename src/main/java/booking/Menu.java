@@ -1,5 +1,9 @@
 package booking;
 
+import java.nio.file.Path;
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
     public class Menu {
@@ -8,6 +12,7 @@ import java.util.Scanner;
         private static final Scanner scanner = new Scanner(System.in);
 
         public static void main(String[] args) {
+            AccommodationList ac = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
             int modeSelection = selectMode();
 
             switch (modeSelection) {
@@ -79,15 +84,39 @@ import java.util.Scanner;
         }
 
         private static void addAccommodation() {
-            // Implement adding accommodation
+            AccommodationList.addAccommodation();
+            System.out.println("Accommodation added successfully!");
         }
 
         private static void addAvailableDates() {
-            // Implement adding available dates
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter the availability date range:");
+            System.out.println("From (DD MM YYYY):");
+            int fromDay = scanner.nextInt();
+            int fromMonth = scanner.nextInt();
+            int fromYear = scanner.nextInt();
+            ReservationDate from = new ReservationDate(fromDay, fromMonth, fromYear);
+
+            System.out.println("To (DD MM YYYY):");
+            int toDay = scanner.nextInt();
+            int toMonth = scanner.nextInt();
+            int toYear = scanner.nextInt();
+            ReservationDate to = new ReservationDate(toDay, toMonth, toYear);
+
+            // Create a ReservationDateRange object with the provided dates
+            ReservationDateRange dateRange = new ReservationDateRange(from, to);
+            System.out.println("Available dates set successfully: " + dateRange);
         }
 
         private static void viewBookedAccommodations() {
-            // Implement viewing booked accommodations
+            System.out.println("Booked Accommodations:");
+            if (AccommodationList.getLengthOfAccommodationList() == 0) {
+                System.out.println("No accommodations booked.");
+            } else {
+                boolean AccommodationList = false;
+                System.out.println(AccommodationList);
+            }
         }
 
         private static void clientMode() {
@@ -134,7 +163,7 @@ import java.util.Scanner;
         }
 
         private static void filterByArea() {
-            // Implement filtering by area
+
         }
 
         private static void filterByDateRange() {
