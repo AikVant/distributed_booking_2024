@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Worker implements Runnable {
     private ServerSocket serverSocket;
@@ -55,12 +57,26 @@ public class Worker implements Runnable {
     }
 
     public static void main(String[] args) {
-        if (args.length != 1) {
+        /*if (args.length != 1) {
             System.err.println("Error: Port Number ");
             System.exit(1);
         }
 
         int port = Integer.parseInt(args[0]);
         new Thread(new Worker(port)).start();
+    }*/
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+
+        int[] ports = new int[]{5001, 5002, 5003};
+        for (int port : ports) {
+            executor.submit(new Worker(port));
+        }
+
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            executor.shutdownNow();
+            System.out.println("Workers shut down.");
+        }));
     }
 }
