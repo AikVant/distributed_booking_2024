@@ -158,4 +158,16 @@ public class Accommodation implements Serializable {
     public static void main(String[] args) throws IOException {
         ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
     }
+
+    public ReservationDateRange getDateRange() {
+        return new ReservationDateRange();
+    }
+
+    public int getMaxCapacity() {
+        return getNumOfPersons();
+    }
+
+    public double getPricePerNight() {
+        return getPricePerNight();
+    }
 }
