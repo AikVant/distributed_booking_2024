@@ -1,105 +1,157 @@
 package booking;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.Scanner;
 
-import java.nio.file.Path;
-import java.util.*;
+    public class Menu {
+        private static final int MANAGER_MODE = 1;
+        private static final int CLIENT_MODE = 2;
+        private static final Scanner scanner = new Scanner(System.in);
 
-class Menu{
+        public static void main(String[] args) {
+            int modeSelection = selectMode();
 
-    public Menu(){
-
-    }
-    public static void main(String[] args) {
-        Accommodation accommodationObj = new Accommodation();
-        ReservationDateRange reservationDateRangeObject = new ReservationDateRange();
-        AvailabilityOfAccommodations availabilityObject = new AvailabilityOfAccommodations();
-        ReadJson readJsonObj = new ReadJson();
-        Client clientObj;
-        Tenant tenantObj = new Tenant("Georgios Papadopoulos");
-        Area areaObject = new Area();
-        int Manager = 1;
-        int Client = 2;
-        boolean flag = false;
-        int s = 0;
-        Scanner scanner = new Scanner(System.in);
-
-        while (!flag) {
-            System.out.println("Welcome! Please choose between Manager and Client mode!");
-            System.out.println("1 : MANAGER MODE --- 2 : CLIENT MODE ");
-            int selection = scanner.nextInt();
-            if(selection == Manager){
-                System.out.println("You are now ready to perform as a Manager!");
-                s = selection;
-                flag = true;
-            } else if (selection == 2) {
-                System.out.println("You are now ready to perform as a Client!");
-                s = selection;
-                flag = true;
-            }else{
-                System.out.println("Invalid selection");
+            switch (modeSelection) {
+                case MANAGER_MODE:
+                    managerMode();
+                    break;
+                case CLIENT_MODE:
+                    clientMode();
+                    break;
+                default:
+                    System.out.println("Invalid selection. Exiting...");
+                    break;
             }
-
+            scanner.close();
         }
 
-        //Scanner scanner1 = new Scanner(System.in);
-        int selection;
-        if(s == 1){
+        private static int selectMode() {
+            int selection;
+            do {
+                System.out.println("Welcome! Please choose between Manager and Client mode:");
+                System.out.println("1: Manager Mode");
+                System.out.println("2: Client Mode");
+                selection = scanner.nextInt();
+            } while (selection != MANAGER_MODE && selection != CLIENT_MODE);
+            return selection;
+        }
 
-            for (String string : Arrays.asList("1 : Change your accommodation to available. ",
-                    "2 : Add your accommodation.", "3 : To add range of available dates. ",
-                    "4 : To view your booked accommodations. ")) {
-                System.out.println(string);
-            }
-            selection = scanner.nextInt();
-            switch (selection){
+        private static void managerMode() {
+            System.out.println("You are now in Manager Mode!");
+            int selection;
+            do {
+                displayManagerMenu();
+                selection = scanner.nextInt();
+                handleManagerSelection(selection);
+            } while (selection != 0);
+        }
+
+        private static void displayManagerMenu() {
+            System.out.println("Manager Menu:");
+            System.out.println("1: Change accommodation availability");
+            System.out.println("2: Add accommodation");
+            System.out.println("3: Add range of available dates");
+            System.out.println("4: View booked accommodations");
+            System.out.println("0: Exit Manager Mode");
+        }
+
+        private static void handleManagerSelection(int selection) {
+            switch (selection) {
                 case 1:
-                    System.out.println("--Enter the name of your accommodation : ");
-                    String selection2 = scanner.nextLine();
-                    reservationDateRangeObject.setAvailable(true);
-                    System.out.println("--Your accommodation " + selection2 + "is now available");
-                    //reservationDateRangeObject.setTo();
-                    //reservationDateRangeObject.setFrom();
+                    changeAccommodationAvailability();
+                    break;
                 case 2:
-                    selection2 = scanner.nextLine();
-                    //clientObj = new Client(selection2);
+                    addAccommodation();
+                    break;
                 case 3:
-                    //reservationDateRangeObject.setFrom(ReservationDate);
-                    //reservationDateRangeObject.setTo();
+                    addAvailableDates();
+                    break;
                 case 4:
-                    //reservationDateRangeObject.isAvailable()
-                    }
-
+                    viewBookedAccommodations();
+                    break;
+                default:
+                    System.out.println("Invalid selection");
+                    break;
             }
-        else {
-            System.out.println("1:  Filter by area. ");
-            System.out.println("2 : Filter by date range. ");
-            System.out.println("3 : Filter by number of people. ");
-            System.out.println("4 : Filter by price. ");
-            System.out.println("5 : Filter by ranking. ");
-            System.out.println("6 : Logout. ");
-            int selection1 = scanner.nextInt();
+        }
 
-            switch (selection1){
+        private static void changeAccommodationAvailability() {
+            // Implement changing accommodation availability
+        }
+
+        private static void addAccommodation() {
+            // Implement adding accommodation
+        }
+
+        private static void addAvailableDates() {
+            // Implement adding available dates
+        }
+
+        private static void viewBookedAccommodations() {
+            // Implement viewing booked accommodations
+        }
+
+        private static void clientMode() {
+            System.out.println("You are now in Client Mode!");
+            int selection;
+            do {
+                displayClientMenu();
+                selection = scanner.nextInt();
+                handleClientSelection(selection);
+            } while (selection != 0);
+        }
+
+        private static void displayClientMenu() {
+            System.out.println("Client Menu:");
+            System.out.println("1: Filter by area");
+            System.out.println("2: Filter by date range");
+            System.out.println("3: Filter by number of people");
+            System.out.println("4: Filter by price");
+            System.out.println("5: Filter by ranking");
+            System.out.println("0: Logout");
+        }
+
+        private static void handleClientSelection(int selection) {
+            switch (selection) {
                 case 1:
-                    System.out.println("Area name : ");
-                    String selection2 = scanner.nextLine();
-                    //areaObject.getCity();
-
+                    filterByArea();
+                    break;
                 case 2:
-                    //reservationDateRangeObject.setTo();
-                    //reservationDateRangeObject.setFrom();
+                    filterByDateRange();
+                    break;
                 case 3:
-                    //tenantObj.setName();
+                    filterByNumberOfPeople();
+                    break;
                 case 4:
+                    filterByPrice();
+                    break;
                 case 5:
-                    System.out.println("Select ranking from 1 to 5 stars : ");
-                    int rank = scanner.nextInt();
-
-
+                    filterByRanking();
+                    break;
+                default:
+                    System.out.println("Invalid selection");
+                    break;
             }
         }
-        scanner.close();
+
+        private static void filterByArea() {
+            // Implement filtering by area
+        }
+
+        private static void filterByDateRange() {
+            // Implement filtering by date range
+        }
+
+        private static void filterByNumberOfPeople() {
+            // Implement filtering by number of people
+        }
+
+        private static void filterByPrice() {
+            // Implement filtering by price
+        }
+
+        private static void filterByRanking() {
+            // Implement filtering by ranking
+        }
     }
-}
+
+
