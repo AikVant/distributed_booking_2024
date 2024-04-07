@@ -41,6 +41,11 @@ public class AccommodationList {
         Accommodation  newAccommodation = accommodation.createAccommodation();
         accommodationList.add(newAccommodation);
     }
+
+    public static void addAccommodation(Accommodation accommodation){
+        accommodationList.add(accommodation);
+    }
+
     public static int getLengthOfAccommodationList(){
         return accommodationList.size();
     }

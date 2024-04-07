@@ -1,4 +1,4 @@
-package booking2;
+package booking;
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;

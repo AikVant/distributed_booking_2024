@@ -166,6 +166,23 @@ public class Accommodation implements Serializable {
                 '}';
     }
 
+    public JSONObject toJson(){
+        JSONObject json = new JSONObject();
+        json.put("accType", this.accType);
+        json.put("roomName", this.roomName);
+        json.put("numOfPersons",this.numOfPersons);
+        json.put("area", new JSONObject()
+                .put("city", this.area.getCity())
+                .put("road", this.area.getRoad())
+                .put("number", this.area.getNumber())
+                .put("zipCode", this.area.getZipCode()));
+        json.put("stars", this.stars);
+        json.put("numOfReviews", this.numOfReviews);
+        json.put("roomImage", this.roomImage.getAddress());
+        json.put("pricePerNight", this.pricePerNight);
+        return json;
+    }
+
     public static void main(String[] args) throws IOException {
         ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
     }
