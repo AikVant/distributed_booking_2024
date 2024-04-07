@@ -4,11 +4,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
 
 public class Accommodation implements Serializable {
+    //private int price;
     private String accType = "";
     private String roomName;
     private Integer numOfPersons;
@@ -30,11 +32,12 @@ public class Accommodation implements Serializable {
         this.stars = valueOf(obj.getString("stars"));
         this.numOfReviews = valueOf(obj.getString("numOfReviews"));
         this.roomImage = new Image(obj);
+        //this.price = Integer.parseInt(obj.getString("price"));
         //this.available = obj.getBoolean("available");
 
     }
 
-    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, boolean available) {
+    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, boolean available , int price) {
         this.accType = accType;
         this.roomName = roomName;
         this.numOfPersons = numOfPersons;
@@ -42,12 +45,18 @@ public class Accommodation implements Serializable {
         this.stars = stars;
         this.numOfReviews = numOfReviews;
         this.roomImage = roomImage;
+        //this.price = price;
         //this.available = available;
     }
+
+    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, int i, int i1, Image roomImage, boolean b) {
+    }
+
 
     public String getAccType() {
         return accType;
     }
+   // public Integer getPricePerNight(){return price;}
 
     public String getRoomName() {
         return roomName;
@@ -80,6 +89,9 @@ public class Accommodation implements Serializable {
     public void setAccType(String accType) {
         this.accType = accType;
     }
+    /*public void setPricePerNight(Integer pricePerNight){
+        double pricePerNight1 = this.getPricePerNight();
+    }*/
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
@@ -122,7 +134,7 @@ public class Accommodation implements Serializable {
         System.out.println("Add roomName: ");
         setRoomName(in.nextLine());
         System.out.println("Add numOfPersons: ");
-        setNumOfPersons(Integer.valueOf(in.nextLine()));
+        setNumOfPersons(valueOf(in.nextLine()));
 
         Area area = new Area();
         System.out.println("Add city: ");
@@ -136,6 +148,8 @@ public class Accommodation implements Serializable {
 
         System.out.println("Add roomImage: ");
         setRoomImage(new Image(in.nextLine()));
+        //System.out.println("Add price per night: ");
+        //setPricePerNight(valueOf(in.nextLine()));
 
         return new Accommodation(accType, roomName, numOfPersons, area, 0, 0, roomImage, true);
 
@@ -143,17 +157,12 @@ public class Accommodation implements Serializable {
 
     @Override
     public String toString() {
-        return "Accommodation{" +
-                "accType='" + accType + '\'' +
-                ", roomName='" + roomName + '\'' +
-                ", numOfPersons=" + numOfPersons +
-                ", area=" + area +
-                ", stars=" + stars +
-                ", numOfReviews=" + numOfReviews +
-                ", roomImage=" + roomImage +
-                /*", available=" + available*/ +
-                '}';
+        /*", available=" + available*/
+        Object pricePerNight = null;
+        return STR."Accommodation{accType='\{accType}\{'\''}, roomName='\{roomName}\{'\''}, numOfPersons=\{numOfPersons}, area=\{area}, stars=\{stars}, numOfReviews=\{numOfReviews}, roomImage=\{roomImage},,\{+
+                '}'}" ;
     }
+    //pricePerNight=\{pricePerNight}?????
 
     public static void main(String[] args) throws IOException {
         ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
@@ -167,7 +176,19 @@ public class Accommodation implements Serializable {
         return getNumOfPersons();
     }
 
-    public double getPricePerNight() {
+    /*public double getPricePerNight() {
         return getPricePerNight();
+    }*/
+
+    public int getRanking() {
+        return getStars();
     }
+
+    /*public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }*/
 }

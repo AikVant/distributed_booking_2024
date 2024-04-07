@@ -58,7 +58,7 @@ public class AccommodationList {
     }
 
     public static void main(String[] args) {
-        AccommodationList list = new AccommodationList();
+        AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
         System.out.println(list);
     }
 }
