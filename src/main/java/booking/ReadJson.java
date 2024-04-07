@@ -35,7 +35,7 @@ public class ReadJson {
         String stars = jsonObject.getString("stars");
         String numOfReviews = jsonObject.getString("numOfReviews");
         String roomImage = jsonObject.getString("roomImage");
-        //String available = jsonObject.getString("available");
+        String pricePerNight = jsonObject.getString("pricePerNight");
 
         Accommodation accommodation = new Accommodation(jsonObject);
 

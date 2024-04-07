@@ -18,6 +18,7 @@ public class Accommodation implements Serializable {
     private Integer stars;
     private Integer numOfReviews;
     private Image roomImage;
+    private Integer pricePerNight;
     //private boolean available = false;
 
     public Accommodation() {
@@ -32,9 +33,7 @@ public class Accommodation implements Serializable {
         this.stars = valueOf(obj.getString("stars"));
         this.numOfReviews = valueOf(obj.getString("numOfReviews"));
         this.roomImage = new Image(obj);
-        //this.price = Integer.parseInt(obj.getString("price"));
-        //this.available = obj.getBoolean("available");
-
+        this.pricePerNight = Integer.parseInt(obj.getString("pricePerNight"));
     }
 
     public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, boolean available , int price) {
@@ -45,18 +44,15 @@ public class Accommodation implements Serializable {
         this.stars = stars;
         this.numOfReviews = numOfReviews;
         this.roomImage = roomImage;
-        //this.price = price;
-        //this.available = available;
-    }
-
-    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, int i, int i1, Image roomImage, boolean b) {
+        this.pricePerNight = price;
     }
 
 
     public String getAccType() {
         return accType;
     }
-   // public Integer getPricePerNight(){return price;}
+
+    public Integer getPricePerNight(){return pricePerNight;}
 
     public String getRoomName() {
         return roomName;
@@ -82,16 +78,12 @@ public class Accommodation implements Serializable {
         return roomImage;
     }
 
-//    public boolean isAvailable() {
-//        return available;
-//    }
-
     public void setAccType(String accType) {
         this.accType = accType;
     }
-    /*public void setPricePerNight(Integer pricePerNight){
-        double pricePerNight1 = this.getPricePerNight();
-    }*/
+    public void setPricePerNight(Integer pricePerNight){
+        this.pricePerNight = pricePerNight;
+    }
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
@@ -116,10 +108,15 @@ public class Accommodation implements Serializable {
     public void setRoomImage(Image roomImage) {
         this.roomImage = roomImage;
     }
-
-//    public void setAvailable(boolean available) {
-//        this.available = available;
-//    }
+    public ReservationDateRange getDateRange() {
+        return new ReservationDateRange();
+    }
+    public int getMaxCapacity() {
+        return getNumOfPersons();
+    }
+    public int getRanking() {
+        return getStars();
+    }
 
     /**
      * Reads input from Manager and creates new Accommodation
@@ -148,47 +145,45 @@ public class Accommodation implements Serializable {
 
         System.out.println("Add roomImage: ");
         setRoomImage(new Image(in.nextLine()));
-        //System.out.println("Add price per night: ");
-        //setPricePerNight(valueOf(in.nextLine()));
+        System.out.println("Add price per night: ");
+        setPricePerNight(valueOf(in.nextLine()));
 
-        return new Accommodation(accType, roomName, numOfPersons, area, 0, 0, roomImage, true);
+        return new Accommodation(accType, roomName, numOfPersons, area, 0, 0, roomImage, true, pricePerNight);
 
     }
 
     @Override
     public String toString() {
-        /*", available=" + available*/
-        Object pricePerNight = null;
-        return STR."Accommodation{accType='\{accType}\{'\''}, roomName='\{roomName}\{'\''}, numOfPersons=\{numOfPersons}, area=\{area}, stars=\{stars}, numOfReviews=\{numOfReviews}, roomImage=\{roomImage},,\{+
-                '}'}" ;
+        return "Accommodation{" +
+                "accType='" + accType + '\'' +
+                ", roomName='" + roomName + '\'' +
+                ", numOfPersons=" + numOfPersons +
+                ", area=" + area +
+                ", stars=" + stars +
+                ", numOfReviews=" + numOfReviews +
+                ", roomImage=" + roomImage +
+                ", pricePerNight=" + pricePerNight +
+                '}';
     }
-    //pricePerNight=\{pricePerNight}?????
+
+    public JSONObject toJson(){
+        JSONObject json = new JSONObject();
+        json.put("accType", this.accType);
+        json.put("roomName", this.roomName);
+        json.put("numOfPersons",this.numOfPersons);
+        json.put("area", new JSONObject()
+                .put("city", this.area.getCity())
+                .put("road", this.area.getRoad())
+                .put("number", this.area.getNumber())
+                .put("zipCode", this.area.getZipCode()));
+        json.put("stars", this.stars);
+        json.put("numOfReviews", this.numOfReviews);
+        json.put("roomImage", this.roomImage.getAddress());
+        json.put("pricePerNight", this.pricePerNight);
+        return json;
+    }
 
     public static void main(String[] args) throws IOException {
         ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), 0);
     }
-
-    public ReservationDateRange getDateRange() {
-        return new ReservationDateRange();
-    }
-
-    public int getMaxCapacity() {
-        return getNumOfPersons();
-    }
-
-    /*public double getPricePerNight() {
-        return getPricePerNight();
-    }*/
-
-    public int getRanking() {
-        return getStars();
-    }
-
-    /*public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }*/
 }

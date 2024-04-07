@@ -1,118 +1,91 @@
 package booking;
-
-import java.io.*;
+import booking.Accommodation;
+import booking.ReadJson;
+import org.json.JSONObject;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
-import static booking.SplitToWorkers.*;
-
-public class Master extends Thread{
-    SplitToWorkers work1;
-    SplitToWorkers work2;
-    SplitToWorkers work3;
-
-    Master(SplitToWorkers work1, SplitToWorkers work2, SplitToWorkers work3){
-        this.work1 = work1;
-        this.work2 = work2;
-        this.work3 = work3;
-
-    }
+public class Master {
+    private static final int PORT = 5000;
+    private List<String> workerNodes;
+    private List<Accommodation> accommodations;
 
     public Master() {
+        workerNodes = new ArrayList<>();
+        accommodations = new ArrayList<>();
 
+        // Ip gia workers placeholder pros to parwn
+        workerNodes.add("127.0.0.1:5001"); // Worker 1
+        workerNodes.add("127.0.0.1:5002"); // Worker 2
+        workerNodes.add("127.0.0.1:5003"); // Worker 3
     }
-
-//    private static Object sendSubList1() {
-//        return worker1;
-//    }
-//    private static Object sendSubList2() {
-//        return worker2;
-//    }
-//    private static Object sendSubList3() {
-//        return worker3;
-//    }
-
-    public void run() {
-        Socket requestSocket = null;
-        ObjectInputStream in = null;
-        ObjectOutputStream out = null;
-
-
-        try {
-            /* Create socket for contacting the server on port 4321*/
-            requestSocket = new Socket("localhost", 3456);
-
-            /* Create the streams to send and receive data from server */
-            out = new ObjectOutputStream(requestSocket.getOutputStream());
-            in = new ObjectInputStream(requestSocket.getInputStream());
-
-
-            /* Write the object */
-            //out.writeObject(worker);
-            out.writeUTF("hello");
-            out.flush();
-            //SplitToWorkers worker1 = (SplitToWorkers) in.readObject();
-//            out.writeObject(sendSubList1());
-//            out.flush();
-//
-//            out.writeObject(sendSubList2());
-//            out.flush();
-//
-//            out.writeObject(sendSubList3());
-//            out.flush();
-
-            out.writeObject(worker1);
-            out.flush();
-
-            out.writeObject(worker2);
-            out.flush();
-
-            out.writeObject(worker3);
-            out.flush();
-
-//            System.out.println("Worker: " + sendSubList1().toString());
-//            System.out.println("Worker: " + sendSubList2().toString());
-//            System.out.println("Worker: " + sendSubList3().toString());
-
-            System.out.println("Worker: " + worker1.toString());
-            System.out.println("Worker: " + worker2.toString());
-            System.out.println("Worker: " + worker3.toString());
-
-        } catch (UnknownHostException unknownHost) {
-            System.err.println("You are trying to connect to an unknown host!");
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-            //oxi auto edw
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-        } finally {
-            try {
-                in.close();
-                out.close();
-                requestSocket.close();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-    }
-
 
     public static void main(String[] args) {
-        SplitToWorkers.setUpWorkersLists();
-        System.out.println("-------------------worker1--------------------------------");
-        for (Accommodation accommodation : worker1) {
-            System.out.println(accommodation);
+        Master master = new Master();
+        master.startServer();
+    }
+
+    public void startServer() {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Master Server started on port " + PORT);
+
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                new MasterWorkerThread(clientSocket, this).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("-------------------worker2--------------------------------");
-        for (Accommodation accommodation : worker2) {
-            System.out.println(accommodation);
+    }
+
+    public synchronized void addAccommodation(Path jsonFilePath, int index) {
+        Accommodation accommodation = ReadJson.readFile(jsonFilePath, index);
+        accommodations.add(accommodation);
+
+        //Stelnei ean accommodation sto swsto worker analoga me to onoma tou dwmatiou
+        String workerInfo = getWorkerNode(accommodation.getRoomName());
+        sendAccommodationToWorker(workerInfo, accommodation);
+    }
+
+    private String getWorkerNode(String roomName) {
+        int nodeIndex = Math.abs(roomName.hashCode()) % workerNodes.size();
+        return workerNodes.get(nodeIndex);
+    }
+
+    private void sendAccommodationToWorker(String workerInfo, Accommodation accommodation) {
+        String[] parts = workerInfo.split(":");
+        String workerHost = parts[0];
+        int workerPort = Integer.parseInt(parts[1]);
+
+        try (Socket workerSocket = new Socket(workerHost, workerPort);
+             PrintWriter out = new PrintWriter(workerSocket.getOutputStream(), true)) {
+
+            JSONObject jsonAccommodation = new JSONObject();
+            jsonAccommodation.put("accType", accommodation.getAccType());
+            jsonAccommodation.put("roomName", accommodation.getRoomName());
+            jsonAccommodation.put("numOfPersons", accommodation.getNumOfPersons().toString());
+
+            JSONObject jsonArea = new JSONObject();
+            jsonArea.put("city", accommodation.getArea().getCity());
+            jsonArea.put("road", accommodation.getArea().getRoad());
+            jsonArea.put("number", accommodation.getArea().getNumber());
+            jsonArea.put("zipCode", accommodation.getArea().getZipCode());
+            jsonAccommodation.put("area", jsonArea);
+
+            jsonAccommodation.put("stars", accommodation.getStars().toString());
+            jsonAccommodation.put("numOfReviews", accommodation.getNumOfReviews().toString());
+            jsonAccommodation.put("roomImage", accommodation.getRoomImage().getAddress());
+            jsonAccommodation.put("pricePerNight", accommodation.getPricePerNight().toString());
+            out.println(jsonAccommodation.toString());
+            System.out.println("Sent " + accommodation.getRoomName() + " to worker at " + workerInfo);
+        } catch (IOException e) {
+            System.err.println("Could not send accommodation to worker " + workerInfo);
+            e.printStackTrace();
         }
-        System.out.println("-------------------worker3--------------------------------");
-        for (Accommodation accommodation : worker3) {
-            System.out.println(accommodation);
-        }
-        new Master().start();
     }
 }
-
-

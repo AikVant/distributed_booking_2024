@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.Scanner;
 
+import static java.lang.StringTemplate.STR;
+
 public class Menu {
     private static final int MANAGER_MODE = 1;
     private static final int CLIENT_MODE = 2;
