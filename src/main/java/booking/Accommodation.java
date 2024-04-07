@@ -23,7 +23,7 @@ public class Accommodation implements Serializable {
 
     public Accommodation() {
     }
-    public Accommodation(JSONObject obj){
+   /* public Accommodation(JSONObject obj){
         this.accType = obj.getString("accType");
         this.roomName = obj.getString("roomName");
         this.numOfPersons = valueOf(obj.getString("numOfPersons"));
@@ -34,7 +34,20 @@ public class Accommodation implements Serializable {
         this.numOfReviews = valueOf(obj.getString("numOfReviews"));
         this.roomImage = new Image(obj);
         this.pricePerNight = Integer.parseInt(obj.getString("pricePerNight"));
-    }
+    }*/
+   public Accommodation(JSONObject obj) {
+       this.accType = obj.getString("accType");
+       this.roomName = obj.getString("roomName");
+       this.numOfPersons = obj.getInt("numOfPersons");
+       JSONObject jsonArea = obj.getJSONObject("area");
+       this.area = new Area(jsonArea.getString("city"), jsonArea.getString("road"),
+               jsonArea.getString("number"), jsonArea.getString("zipCode"));
+       this.stars = obj.getInt("stars");
+       this.numOfReviews = obj.getInt("numOfReviews");
+       this.roomImage = new Image(obj.getString("roomImage"));
+       this.pricePerNight = obj.getInt("pricePerNight");
+   }
+
 
     public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, boolean available , int price) {
         this.accType = accType;

@@ -68,18 +68,16 @@ public class ManagerApp {
         }
     }
     private void sendAllAccommodations(){
-      AccommodationList accommodationList = new AccommodationList(Paths.get("src/main/java/booking/accommodations.json"));
-      List<Accommodation> allAccommodations = accommodationList.getAccommodationList();
-      for(Accommodation accommodation : allAccommodations){
-          JSONObject jsonAccommodation = accommodation.toJson();
-          out.println(jsonAccommodation.toString());
-      }
-        try{
-            String response = in.readLine();
-            System.out.println("Response from Master: " + response);
-        } catch (IOException e){
-            System.err.println("Error receiving response from Master");
-            e.printStackTrace();
+        final int totalAccommodations = 83;
+        for (int i = 0; i <totalAccommodations; i++){
+            out.println(i);
+            try {
+                String response = in.readLine();
+                System.out.println("Master response for accommodation " + (i + 1) + ": ");
+            }catch(IOException e){
+                System.out.println("Error receiving response from Master for accommodations");
+                e.printStackTrace();
+            }
         }
     }
 

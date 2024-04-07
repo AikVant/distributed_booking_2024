@@ -42,6 +42,10 @@ public class Master {
             e.printStackTrace();
         }
     }
+    public void addAccommodationFromJson(JSONObject jsonAccommodation){
+        Accommodation accommodation = new Accommodation(jsonAccommodation);
+        accommodations.add(accommodation);
+    }
 
     public synchronized void addAccommodation(Path jsonFilePath, int index) {
         Accommodation accommodation = ReadJson.readFile(jsonFilePath, index);
