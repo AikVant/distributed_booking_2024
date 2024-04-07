@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccommodationList {
-    List<Accommodation> accommodationList = new ArrayList<>();
+    static List<Accommodation> accommodationList = new ArrayList<>();
     int length;
 
     public AccommodationList(){
@@ -27,7 +27,7 @@ public class AccommodationList {
         this.length = size;
     }
 
-    public List<Accommodation> getAccommodationList() {
+    public static List<Accommodation> getAccommodationList() {
         return accommodationList;
     }
     public int getLength(){
@@ -36,12 +36,12 @@ public class AccommodationList {
     /**
      * Adds new Accommodation(created from Manager) to accommodationList
      */
-    public void addAccommodation(){
+    public static void addAccommodation(){
         Accommodation accommodation = new Accommodation();
         Accommodation  newAccommodation = accommodation.createAccommodation();
         accommodationList.add(newAccommodation);
     }
-    public int getLengthOfAccommodationList(){
+    public static int getLengthOfAccommodationList(){
         return accommodationList.size();
     }
     public Accommodation get(int index){
@@ -58,7 +58,7 @@ public class AccommodationList {
     }
 
     public static void main(String[] args) {
-        AccommodationList list = new AccommodationList();
+        AccommodationList list = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
         System.out.println(list);
     }
 }

@@ -120,10 +120,10 @@ public class Menu {
                 filterByNumberOfPeople();
                 break;
             case 4:
-                filterByPrice();
+                //filterByPrice();
                 break;
             case 5:
-                //filterByRanking();
+                filterByRanking();
                 break;
             default:
                 System.out.println("Invalid selection");
@@ -211,7 +211,7 @@ public class Menu {
             System.out.println(STR."No accommodations found that can accommodate \{numberOfPeople} people.");
         }
     }
-    private static void filterByPrice() {
+    /*private static void filterByPrice() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Filtering by price...");
         System.out.print("Enter the minimum price: ");
@@ -234,12 +234,30 @@ public class Menu {
         if (!found) {
             System.out.println("No accommodations found within the specified price range.");
         }
-    }
+    }*/
     private static void filterByRanking () {
         System.out.println("Filtering by ranking...");
+        System.out.print("Enter the minimum ranking (1-5): ");
+        int minRanking = scanner.nextInt();
+        System.out.print("Enter the maximum ranking (1-5): ");
+        int maxRanking = scanner.nextInt();
+        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
+        boolean found = false;
+        for (Accommodation accommodation : accommodations) {
+            int ranking = accommodation.getRanking();
+            if (ranking >= minRanking && ranking <= maxRanking) {
+                System.out.println(accommodation); // Print the matched accommodation
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No accommodations found within the specified ranking range.");
+        }
     }
     public static void main(String[] args) {
-        AccommodationList ac = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
+        AccommodationList ac;
+        ac = new AccommodationList(Path.of("src/main/java/booking/accommodations.json"));
         int modeSelection = selectMode();
         switch (modeSelection) {
             case MANAGER_MODE:

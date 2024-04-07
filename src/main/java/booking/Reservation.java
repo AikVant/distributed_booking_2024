@@ -30,6 +30,9 @@ public class Reservation {
     public ReservationDateRange getDate() {
         return date;
     }
+    public Integer getprice(){
+        Integer price = null;
+        return  price;}
 
     public void setAccommodation(Accommodation accommodation) {
         this.accommodation = accommodation;
@@ -46,20 +49,10 @@ public class Reservation {
     public void setDate(ReservationDateRange date) {
         this.date = date;
     }
-    Accommodation a =  new Accommodation("Motel" , "31" , 3 , new Area("Crete"), 3 , 105 , new Image("motelImage") , true);
-    Accommodation b =  new Accommodation("Resort" , "701" , 8 , new Area("Scorpios"), 5 , 1000 , new Image("resortImage") , false);
-    Accommodation c =  new Accommodation("Cabin" , "5" , 4 , new Area("Ios"), 3 , 105 , new Image("motelImage") , true);
-    Accommodation d =  new Accommodation("Apartment" , "22" , 2 , new Area("Acropolis"), 4 , 115 , new Image("apartmentImage") , false);
-    Accommodation e =  new Accommodation("Bed and Breakfast" , "202" , 3 , new Area("Corfu"), 2 , 10 , new Image("BBImage") , true);
 
 
     @Override
     public String toString() {
-        return "Reservation{" +
-                "accommodation=" + accommodation +
-                ", tenant=" + tenant +
-                ", numOfPeople=" + numOfPeople +
-                ", date=" + date +
-                '}';
+        return STR."Reservation{accommodation=\{accommodation}, tenant=\{tenant}, numOfPeople=\{numOfPeople}, date=\{date},price=\{getprice()}\{'}'}";
     }
 }
