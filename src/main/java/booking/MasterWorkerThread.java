@@ -20,7 +20,7 @@ public class MasterWorkerThread extends Thread {
             while ((inputLine = in.readLine()) != null) {
                 try {
                     int index = Integer.parseInt(inputLine);
-                    Path jsonFilePath = Path.of("C:\\Users\\gregt\\IdeaProjects\\Distributed2023-24\\src\\main\\java\\accommodations.json");
+                    Path jsonFilePath = Path.of("src/main/java/booking/accommodations.json");
                     master.addAccommodation(jsonFilePath, index);
                     out.println("Accommodation added.");
                 } catch (NumberFormatException e) {

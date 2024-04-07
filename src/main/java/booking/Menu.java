@@ -19,7 +19,7 @@ public class Menu {
         } while (selection != MANAGER_MODE && selection != CLIENT_MODE);
         return selection;
     }
-    private static void managerMode() {
+    private void managerMode() {
         System.out.println("You are now in Manager Mode!");
         int selection;
         do {
@@ -36,7 +36,7 @@ public class Menu {
         System.out.println("4: View booked accommodations");
         System.out.println("0: Exit Manager Mode");
     }
-    private static void handleManagerSelection(int selection) {
+    private void handleManagerSelection(int selection) {
         switch (selection) {
             case 1:
                 changeAccommodationAvailability();
@@ -58,8 +58,11 @@ public class Menu {
     private static void changeAccommodationAvailability() {
         // Implement changing accommodation availability
     }
-    private static void addAccommodation() {
-        AccommodationList.addAccommodation();
+    private void addAccommodation() {
+        Accommodation accommodation = new Accommodation();
+        Accommodation  newAccommodation = accommodation.createAccommodation();
+        AccommodationList accommodationList = new AccommodationList();
+        accommodationList.getAccommodationList().add(newAccommodation);
         System.out.println("Accommodation added successfully!");
     }
     private static void addAvailableDates() {
@@ -83,8 +86,9 @@ public class Menu {
         System.out.println(STR."Available dates set successfully: \{dateRange}");
     }
     private static void viewBookedAccommodations() {
+        AccommodationList accommodationList = new AccommodationList();
         System.out.println("Booked Accommodations:");
-        if (AccommodationList.getLengthOfAccommodationList() == 0) {
+        if (accommodationList == null) {
             System.out.println("No accommodations booked.");
         } else {
             boolean AccommodationList = false;
@@ -124,7 +128,7 @@ public class Menu {
                 //filterByPrice();
                 break;
             case 5:
-                filterByRanking();
+                //filterByRanking();
                 break;
             default:
                 System.out.println("Invalid selection");
@@ -134,7 +138,8 @@ public class Menu {
     private static void filterByArea() {
         System.out.println("Filtering by area...");
         System.out.println("Enter the area details to filter by:");
-        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
+        AccommodationList accommodations = new AccommodationList();
+        //accommodations.getAccommodationList();
         System.out.print("City: ");
         String city = scanner.next();
         System.out.print("Road: ");
@@ -144,11 +149,11 @@ public class Menu {
         System.out.print("Zip Code: ");
         String zipCode = scanner.next();
         boolean found = false;
-        for (Accommodation accommodation : accommodations) {
-            Area area = accommodation.getArea();
-            if (area.getCity().equals(city) && area.getRoad().equals(road) &&
-                    area.getNumber().equals(number) && area.getZipCode().equals(zipCode)) {
-                System.out.println(accommodation); // Print the matched accommodation
+        for (int i = 0; i < accommodations.getAccommodationList().size(); i++) {
+            Area area = new Area(city,road, number, zipCode); //accommodations.getArea();
+            if (area.getCity().equals(accommodations.getAccommodationList().get(i).getArea().getCity()) && area.getRoad().equals(accommodations.getAccommodationList().get(i).getArea().getRoad()) &&
+                    area.getNumber().equals(accommodations.getAccommodationList().get(i).getArea().getNumber()) && area.getZipCode().equals(accommodations.getAccommodationList().get(i).getArea().getNumber())) {
+                System.out.println(accommodations); // Print the matched accommodation
                 found = true;
             }
         }
@@ -175,14 +180,15 @@ public class Menu {
         ReservationDate toDate = new ReservationDate(toDay, toMonth, toYear);
 
         // Assuming you have a list of accommodations, you can filter them by date range
-        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
+        AccommodationList accommodations = new AccommodationList();
+        accommodations.getAccommodationList();
 
         // Iterate over accommodations and check if they fall within the specified date range
         boolean found = false;
-        for (Accommodation accommodation : accommodations) {
-            ReservationDateRange dateRange = accommodation.getDateRange();
+        for (int i = 0; i < accommodations.getAccommodationList().size(); i++) {
+            ReservationDateRange dateRange = new ReservationDateRange(new ReservationDate(fromDay, fromMonth, fromYear), new ReservationDate(toDay, toMonth, toYear));
             if (dateRange.getFrom().compareTo(fromDate) >= 0 && dateRange.getTo().compareTo(toDate) <= 0) {
-                System.out.println(accommodation); // Print the matched accommodation
+                System.out.println(accommodations); // Print the matched accommodation
                 found = true;
             }
         }
@@ -197,13 +203,14 @@ public class Menu {
         int numberOfPeople = scanner.nextInt();
 
         // Assuming you have a list of accommodations, you can filter them by number of people
-        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
+        AccommodationList accommodations = new AccommodationList();
+        accommodations.getAccommodationList();
 
         // Iterate over accommodations and check if they can accommodate the specified number of people
         boolean found = false;
-        for (Accommodation accommodation : accommodations) {
-            if (accommodation.getMaxCapacity() >= numberOfPeople) {
-                System.out.println(accommodation); // Print the matched accommodation
+        for (int i = 0; i < accommodations.getAccommodationList().size(); i++) {
+            if (accommodations.getAccommodationList().get(i).getNumOfPersons() >= numberOfPeople) {
+                System.out.println(accommodations); // Print the matched accommodation
                 found = true;
             }
         }
@@ -212,42 +219,20 @@ public class Menu {
             System.out.println(STR."No accommodations found that can accommodate \{numberOfPeople} people.");
         }
     }
-    /**private static void filterByPrice() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Filtering by price...");
-        System.out.print("Enter the minimum price: ");
-        double minPrice = scanner.nextDouble();
-        System.out.print("Enter the maximum price: ");
-        double maxPrice = scanner.nextDouble();
 
-        // Assuming you have a list of accommodations, you can filter them by price range
-        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
-
-        // Iterate over accommodations and check if they fall within the specified price range
-        boolean found = false;
-        for (Accommodation accommodation : accommodations) {
-            if (accommodation.getPricePerNight() >= minPrice && accommodation.getPricePerNight() <= maxPrice) {
-                System.out.println(accommodation); // Print the matched accommodation
-                found = true;
-            }
-        }
-
-        if (!found) {
-            System.out.println("No accommodations found within the specified price range.");
-        }
-    }*/
     private static void filterByRanking () {
         System.out.println("Filtering by ranking...");
         System.out.print("Enter the minimum ranking (1-5): ");
         int minRanking = scanner.nextInt();
         System.out.print("Enter the maximum ranking (1-5): ");
         int maxRanking = scanner.nextInt();
-        List<Accommodation> accommodations = AccommodationList.getAccommodationList();
+        AccommodationList accommodations = new AccommodationList();
+        accommodations.getAccommodationList();
         boolean found = false;
-        for (Accommodation accommodation : accommodations) {
-            int ranking = accommodation.getRanking();
+        for (int i = 0; i < accommodations.getAccommodationList().size(); i++) {
+            int ranking = accommodations.getAccommodationList().get(i).getRanking();
             if (ranking >= minRanking && ranking <= maxRanking) {
-                System.out.println(accommodation); // Print the matched accommodation
+                System.out.println(accommodations); // Print the matched accommodation
                 found = true;
             }
         }
@@ -262,7 +247,7 @@ public class Menu {
         int modeSelection = selectMode();
         switch (modeSelection) {
             case MANAGER_MODE:
-                managerMode();
+                //managerMode();
                 break;
             case CLIENT_MODE:
                 clientMode();

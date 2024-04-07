@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccommodationList {
-    static List<Accommodation> accommodationList = new ArrayList<>();
+    List<Accommodation> accommodationList = new ArrayList<>();
     int length;
 
     public AccommodationList(){
@@ -27,7 +27,7 @@ public class AccommodationList {
         this.length = size;
     }
 
-    public static List<Accommodation> getAccommodationList() {
+    public List<Accommodation> getAccommodationList() {
         return accommodationList;
     }
     public int getLength(){
@@ -36,17 +36,17 @@ public class AccommodationList {
     /**
      * Adds new Accommodation(created from Manager) to accommodationList
      */
-    public static void addAccommodation(){
+    public void addAccommodation(){
         Accommodation accommodation = new Accommodation();
         Accommodation  newAccommodation = accommodation.createAccommodation();
         accommodationList.add(newAccommodation);
     }
 
-    public static void addAccommodation(Accommodation accommodation){
+    public void addAccommodation(Accommodation accommodation){
         accommodationList.add(accommodation);
     }
 
-    public static int getLengthOfAccommodationList(){
+    public int getLengthOfAccommodationList(){
         return accommodationList.size();
     }
     public Accommodation get(int index){

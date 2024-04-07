@@ -43,7 +43,7 @@ public class Worker implements Runnable {
                         JSONObject jsonAccommodation = new JSONObject(inputLine);
                         Accommodation accommodation = new Accommodation(jsonAccommodation);
 
-                        AccommodationList.addAccommodation(accommodation);
+                        //AccommodationList.addAccommodation(accommodation);
 
                         System.out.println("Accommodation added: " + accommodation.getRoomName());
                     } catch (Exception e) {
