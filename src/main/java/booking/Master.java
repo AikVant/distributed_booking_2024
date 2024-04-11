@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Master {
@@ -15,7 +16,7 @@ public class Master {
     private List<String> workerNodes;
     private List<Accommodation> accommodations;
 
-    public Master() {
+    /*public Master() {
         workerNodes = new ArrayList<>();
         accommodations = new ArrayList<>();
 
@@ -23,10 +24,25 @@ public class Master {
         workerNodes.add("127.0.0.1:5001"); // Worker 1
         workerNodes.add("127.0.0.1:5002"); // Worker 2
         workerNodes.add("127.0.0.1:5003"); // Worker 3
+    }*/
+
+    public Master(List<String> workerNodes) {
+        this.workerNodes = new ArrayList<>(workerNodes);
+        accommodations = new ArrayList<>();
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Master master = new Master();
+        master.startServer();
+    }*/
+
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.err.println("Error: No worker nodes specified");
+            System.exit(1);
+        }
+
+        Master master = new Master(Arrays.asList(args));
         master.startServer();
     }
 

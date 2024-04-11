@@ -37,9 +37,9 @@ public class Worker implements Runnable {
                 while ((inputLine = in.readLine()) != null) {
                     System.out.println("Received from Master: " + inputLine);
                     try {
+
                         JSONObject jsonAccommodation = new JSONObject(inputLine);
                         Accommodation accommodation = new Accommodation(jsonAccommodation);
-
                         accommodations.addAccommodation(accommodation);
 
                         System.out.println("Accommodation added: " + accommodation.getRoomName());
@@ -58,7 +58,6 @@ public class Worker implements Runnable {
             System.err.println("Error: Port Number ");
             System.exit(1);
         }
-
         int port = Integer.parseInt(args[0]);
         new Thread(new Worker(port)).start();
     }
