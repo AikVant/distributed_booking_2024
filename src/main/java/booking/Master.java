@@ -1,4 +1,5 @@
 package booking;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,6 +8,7 @@ import java.net.Socket;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,30 +51,44 @@ public class Master {
     }
 
     public synchronized void filterAccommodations(JSONObject filters) {
-        String area = filters.getString("area");
-        JSONObject dates = filters.getJSONObject("dates");
-        String dateFrom = dates.getString("dateFrom");
-        String dateTo = dates.getString("dateTo");
-        LocalDate fromDate = LocalDate.parse(dateFrom, DateTimeFormatter.ISO_LOCAL_DATE);
-        LocalDate toDate = LocalDate.parse(dateTo, DateTimeFormatter.ISO_LOCAL_DATE);
-        int numOfPersons = filters.getInt("numOfPersons");
-        JSONObject price = filters.getJSONObject("price");
-        int minPrice = price.getInt("min");
-        int maxPrice = price.getInt("max");
-        JSONObject stars = filters.getJSONObject("stars");
-        int minRanking = price.getInt("min");
-        int maxRanking = price.getInt("max");
+        try {
+            //System.out.println("Received filter JSON: " + filters.toString(2)); // debug
+            System.out.println("Accommodations available: " + accommodations);
+            List<AccommodationFilter> filteredAccommodations = accommodations.stream()
+                    .filter(acc -> acc.getArea().getCity().equalsIgnoreCase(filters.getString("area")))
+                    .filter(acc -> acc.getNumOfPersons().equals(filters.getInt("numOfPersons")))
+                    .filter(acc -> acc.getPricePerNight() >= filters.getJSONObject("price").getInt("minPrice") &&
+                            acc.getPricePerNight() <= filters.getJSONObject("price").getInt("maxPrice"))
+                    .filter(acc -> {
+                        int stars = acc.getStars();
+                        int minRanking = filters.getJSONObject("stars").getInt("minRanking");
+                        int maxRanking = filters.getJSONObject("stars").getInt("maxRanking");
+                        return stars >= minRanking && stars <= maxRanking;
+                    })
+                    .map(acc -> new AccommodationFilter(
+                            acc.getAccType(),
+                            acc.getRoomName(),
+                            acc.getNumOfPersons(),
+                            acc.getArea(),
+                            acc.getStars(),
+                            acc.getNumOfReviews(),
+                            acc.getRoomImage(),
+                            acc.getPricePerNight(),
+                            filters.getJSONObject("price").getInt("minPrice"),
+                            filters.getJSONObject("price").getInt("maxPrice"),
+                            filters.getJSONObject("stars").getInt("minRanking"),
+                            filters.getJSONObject("stars").getInt("maxRanking"),
+                            LocalDate.parse(filters.getJSONObject("dates").getString("dateFrom"), DateTimeFormatter.ISO_LOCAL_DATE),
+                            LocalDate.parse(filters.getJSONObject("dates").getString("dateTo"), DateTimeFormatter.ISO_LOCAL_DATE)
+                    ))
+                    .collect(Collectors.toList());
 
-        List<AccommodationFilter> filteredAccommodations = accommodations.stream()
-                .filter(acc -> acc.getArea().getCity().equalsIgnoreCase(area))
-                .filter(acc -> acc.getNumOfPersons().equals(numOfPersons))
-                .filter(acc -> acc.getPricePerNight() >= minPrice && acc.getPricePerNight() <= maxPrice)
-                .filter(acc -> acc.getStars().equals(stars))
-                .map(acc -> new AccommodationFilter(acc.getAccType(), acc.getRoomName(), acc.getNumOfPersons(),
-                        acc.getArea(), acc.getStars(), acc.getNumOfReviews(),
-                        acc.getRoomImage(), acc.getPricePerNight(),
-                        minPrice, maxPrice, minRanking, maxRanking, fromDate, toDate))
-                .collect(Collectors.toList());
+            System.out.println("Filtered Accommodations Count: " + filteredAccommodations.size());//debug
+            filteredAccommodations.forEach(acc -> System.out.println(acc.toString()));//debug
+
+        } catch (JSONException | DateTimeParseException e) {
+            System.err.println("Error parsing JSON or dates: " + e.getMessage());
+        }
         //Na ginei:
         //distributeFilteredAccommodations(filteredAccommodations);
     }

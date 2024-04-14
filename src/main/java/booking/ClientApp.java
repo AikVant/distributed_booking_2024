@@ -1,11 +1,8 @@
 package booking;
-
 import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-
 
 public class ClientApp {
     private static final String MASTER_HOST = "localhost"; // or the actual host where the Master is running
@@ -26,7 +23,7 @@ public class ClientApp {
         double minPrice = in.nextDouble();
         System.out.println("Choose maximum price:");
         double maxPrice = in.nextDouble();
-        in.nextLine(); // Consume the leftover newline
+        in.nextLine();
         System.out.println("Enter minimum ranking:");
         int minRanking = in.nextInt();
         System.out.println("Enter maximum ranking:");
@@ -37,7 +34,7 @@ public class ClientApp {
         filter.put("dates", new JSONObject().put("dateFrom", dateFrom).put("dateTo", dateTo));
         filter.put("numOfPersons", numOfPersons);
         filter.put("price", new JSONObject().put("minPrice", minPrice).put("maxPrice", maxPrice));
-        filter.put("ranking", new JSONObject().put("minRanking", minRanking).put("maxRanking", maxRanking));
+        filter.put("stars", new JSONObject().put("minRanking", minRanking).put("maxRanking", maxRanking));
 
         saveFiltersToFile(filter.toString());
         sendToMaster(filter.toString());

@@ -2,10 +2,11 @@ package booking;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class AccommodationFilter extends Accommodation {
+public class AccommodationFilter extends Accommodation implements Serializable {
     private int minPrice;
     private int maxPrice;
     private int minRanking;
