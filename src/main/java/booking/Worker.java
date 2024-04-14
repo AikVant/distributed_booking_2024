@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 
 public class Worker implements Runnable {
     private ServerSocket serverSocket;
-    private AccommodationList accommodations;
+    private final AccommodationList accommodations;
 
     public Worker(int port) {
         accommodations = new AccommodationList();
@@ -15,6 +15,17 @@ public class Worker implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public AccommodationList getAccommodations() {
+        return accommodations;
+    }
+    public Accommodation getAccommodations(int index) {
+        return accommodations.get(index);
     }
 
     @Override
@@ -60,5 +71,6 @@ public class Worker implements Runnable {
         }
         int port = Integer.parseInt(args[0]);
         new Thread(new Worker(port)).start();
+
     }
 }

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,22 +20,10 @@ public class Accommodation implements Serializable {
     private Integer numOfReviews;
     private Image roomImage;
     private Integer pricePerNight;
-    private boolean available = false;
 
     public Accommodation() {
     }
-   /* public Accommodation(JSONObject obj){
-        this.accType = obj.getString("accType");
-        this.roomName = obj.getString("roomName");
-        this.numOfPersons = valueOf(obj.getString("numOfPersons"));
-        JSONObject jsonArea = obj.getJSONObject("area");
-        this.area = new Area(jsonArea.getString("city"), jsonArea.getString("road"),
-                jsonArea.getString("number"), jsonArea.getString("zipCode"));
-        this.stars = valueOf(obj.getString("stars"));
-        this.numOfReviews = valueOf(obj.getString("numOfReviews"));
-        this.roomImage = new Image(obj);
-        this.pricePerNight = Integer.parseInt(obj.getString("pricePerNight"));
-    }*/
+
    public Accommodation(JSONObject obj) {
        this.accType = obj.getString("accType");
        this.roomName = obj.getString("roomName");
@@ -49,7 +38,7 @@ public class Accommodation implements Serializable {
    }
 
 
-    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, boolean available , int price) {
+    public Accommodation(String accType, String roomName, Integer numOfPersons, Area area, Integer stars, Integer numOfReviews, Image roomImage, int pricePerNight) {
         this.accType = accType;
         this.roomName = roomName;
         this.numOfPersons = numOfPersons;
@@ -57,16 +46,7 @@ public class Accommodation implements Serializable {
         this.stars = stars;
         this.numOfReviews = numOfReviews;
         this.roomImage = roomImage;
-        this.available = available;
-        this.pricePerNight = price;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
+        this.pricePerNight = pricePerNight;
     }
 
     public String getAccType() {
@@ -139,39 +119,6 @@ public class Accommodation implements Serializable {
         return getStars();
     }
 
-    /**
-     * Reads input from Manager and creates new Accommodation
-     * @return Accommodation
-     */
-    public Accommodation createAccommodation(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("-----You may add new accommodation-----");
-
-        System.out.println("Add accommodation type: ");
-        setAccType(in.nextLine());
-        System.out.println("Add roomName: ");
-        setRoomName(in.nextLine());
-        System.out.println("Add numOfPersons: ");
-        setNumOfPersons(valueOf(in.nextLine()));
-
-        Area area = new Area();
-        System.out.println("Add city: ");
-        area.setCity(in.nextLine());
-        System.out.println("Add road: ");
-        area.setRoad(in.nextLine());
-        System.out.println("Add number: ");
-        area.setNumber(in.nextLine());
-        System.out.println("Add zipCode: ");
-        area.setZipCode(in.nextLine());
-
-        System.out.println("Add roomImage: ");
-        setRoomImage(new Image(in.nextLine()));
-        System.out.println("Add price per night: ");
-        setPricePerNight(valueOf(in.nextLine()));
-
-        return new Accommodation(accType, roomName, numOfPersons, area, 0, 0, roomImage, true, pricePerNight);
-
-    }
 
     @Override
     public String toString() {

@@ -65,7 +65,7 @@ public class Menu {
         Accommodation selectedAccommodation = accommodationList.get(index);
         System.out.println("Enter new availability (true/false):");
         boolean availability = scanner.nextBoolean();
-        selectedAccommodation.setAvailable(availability);
+       // selectedAccommodation.setAvailable(availability);
         System.out.println("Accommodation availability updated successfully!");
 
     }

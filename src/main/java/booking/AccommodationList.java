@@ -19,7 +19,7 @@ public class AccommodationList {
      */
     public AccommodationList(Path path){
         int size = ReadJson.getJsonArray(path).length();
-        //AvailabilityOfAccommodations availabilityOfAccommodations = new AvailabilityOfAccommodations();
+        System.out.println(size);
         for (int i = 0; i < size; i++){
             Accommodation accommodation = ReadJson.readFile(Path.of("src/main/java/booking/accommodations.json"), i);
             accommodationList.add(accommodation);
@@ -27,21 +27,14 @@ public class AccommodationList {
         this.length = size;
     }
 
-    /*public static List<Accommodation> getAccommodationList() {
-        return accommodationList;
-    }*/
+    public void setAccommodationList(List<Accommodation> accommodationList) {
+        this.accommodationList.addAll(accommodationList);
+    }
+
 
     public int getLength(){
         return this.length;
     }
-    /**
-     * Adds new Accommodation(created from Manager) to accommodationList
-     */
-    /*public static void addAccommodation(){
-        Accommodation accommodation = new Accommodation();
-        Accommodation  newAccommodation = accommodation.createAccommodation();
-        accommodationList.add(newAccommodation);
-    }*/
 
     public  void addAccommodation(Accommodation accommodation){
         accommodationList.add(accommodation);
