@@ -1,11 +1,8 @@
 package booking;
-
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class FilterWorkerThread extends Thread {
     private Socket socket;
@@ -17,10 +14,14 @@ public class FilterWorkerThread extends Thread {
     }
 
     private void processFilter(String jsonFilter) {
-        JSONObject filters = new JSONObject();
-        new JSONObject(jsonFilter);
-        master.filterAccommodations(filters);
+        try {
+            JSONObject filters = new JSONObject(jsonFilter); // Properly parse the incoming JSON string
+            master.filterAccommodations(filters); // Use the parsed JSON object
+        } catch (JSONException e) {
+            System.err.println("JSON parsing error: " + e.getMessage());
+        }
     }
+
 
     @Override
     public void run() {

@@ -22,15 +22,15 @@ public class MasterWorkerThread extends Thread {
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
-                    try {
-                        int index = Integer.parseInt(inputLine);
-                        Path jsonFilePath = Paths.get("src/main/java/booking/accommodations.json");
-                        master.addAccommodation(jsonFilePath, index);
-                        out.println("Accommodation added by index.");
-                    } catch (NumberFormatException e) {
-                        out.println("Error: Invalid index format");
-                    }
+                try {
+                    int index = Integer.parseInt(inputLine);
+                    Path jsonFilePath = Paths.get("src/main/java/booking/accommodations.json");
+                    master.addAccommodation(jsonFilePath, index);
+                    out.println("Accommodation added by index.");
+                } catch (NumberFormatException e) {
+                    out.println("Error: Invalid index format");
                 }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

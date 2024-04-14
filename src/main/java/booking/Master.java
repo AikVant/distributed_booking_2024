@@ -1,7 +1,4 @@
 package booking;
-import booking.Accommodation;
-import booking.ReadJson;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static booking.ReadJson.getJsonArray;
-
 public class Master {
-    private static final int PORT = 5000;
+    private static final int FILTER_PORT = 5000; // Existing port for FilterWorkerThread
+    private static final int MASTER_PORT = 5004; // New port for MasterWorkerThread
     private List<String> workerNodes;
     private List<Accommodation> accommodations;
 
@@ -28,24 +24,28 @@ public class Master {
     }
 
     public void startServer() {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Master Server started on port " + PORT);
+        // Start thread for handling client requests (FilterWorkerThread)
+        new Thread(() -> listenOnPort(FILTER_PORT, true)).start();
+
+        // Start thread for handling manager requests (MasterWorkerThread)
+        new Thread(() -> listenOnPort(MASTER_PORT, false)).start();
+    }
+
+    private void listenOnPort(int port, boolean isFilter) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server started on port " + port);
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                if (isFilterWorkerThread(clientSocket)){
+                if (isFilter) {
                     new FilterWorkerThread(clientSocket, this).start();
-                }else{
+                } else {
                     new MasterWorkerThread(clientSocket, this).start();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean isFilterWorkerThread(Socket socket){
-        return false;
     }
 
     public synchronized void filterAccommodations(JSONObject filters) {

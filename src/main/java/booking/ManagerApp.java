@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class ManagerApp {
     private static final String MASTER_HOST = "localhost";
-    private static final int MASTER_PORT = 5000;
+    private static final int MASTER_PORT = 5004;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
