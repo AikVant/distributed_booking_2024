@@ -56,7 +56,18 @@ public class Menu {
         }
     }
     private static void changeAccommodationAvailability() {
-        // Implement changing accommodation availability
+        Accommodation accommodation = new Accommodation();
+        AccommodationList accommodationList = new AccommodationList();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the index of the accommodation : ");
+        accommodationList.getAccommodationList();
+        int index = scanner.nextInt();
+        Accommodation selectedAccommodation = accommodationList.get(index);
+        System.out.println("Enter new availability (true/false):");
+        boolean availability = scanner.nextBoolean();
+        selectedAccommodation.setAvailable(availability);
+        System.out.println("Accommodation availability updated successfully!");
+
     }
     private void addAccommodation() {
         Accommodation accommodation = new Accommodation();
@@ -125,10 +136,10 @@ public class Menu {
                 filterByNumberOfPeople();
                 break;
             case 4:
-                //filterByPrice();
+                filterByPrice();
                 break;
             case 5:
-                //filterByRanking();
+                filterByRanking();
                 break;
             default:
                 System.out.println("Invalid selection");
@@ -219,6 +230,30 @@ public class Menu {
             System.out.println(STR."No accommodations found that can accommodate \{numberOfPeople} people.");
         }
     }
+
+    private static void filterByPrice() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the maximum price per night: ");
+        double maxPrice = scanner.nextDouble();
+
+        AccommodationList accommodations = new AccommodationList();
+        accommodations.getAccommodationList();
+
+        boolean found = false;
+        for (int i = 0; i < accommodations.getAccommodationList().size(); i++) {
+            double pricePerNight = accommodations.getAccommodationList().get(i).getPricePerNight();
+            if (pricePerNight <= maxPrice) {
+                System.out.println(accommodations); // Print the matched accommodation
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No accommodations found within the specified price range.");
+        }
+    }
+
 
     private static void filterByRanking () {
         System.out.println("Filtering by ranking...");

@@ -19,7 +19,7 @@ public class Accommodation implements Serializable {
     private Integer numOfReviews;
     private Image roomImage;
     private Integer pricePerNight;
-    //private boolean available = false;
+    private boolean available = false;
 
     public Accommodation() {
     }
@@ -57,9 +57,17 @@ public class Accommodation implements Serializable {
         this.stars = stars;
         this.numOfReviews = numOfReviews;
         this.roomImage = roomImage;
+        this.available = available;
         this.pricePerNight = price;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public String getAccType() {
         return accType;
