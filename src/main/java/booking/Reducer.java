@@ -4,10 +4,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import org.json.*;
 
-import java.io.*;
-import java.net.*;
-import org.json.*;
-
 public class Reducer {
     private static final int PORT = 5006;
     private String masterHost = "localhost";  // Master's host address

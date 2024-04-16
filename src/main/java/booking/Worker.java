@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Worker implements Runnable {
     private ServerSocket serverSocket;
@@ -55,16 +54,14 @@ public class Worker implements Runnable {
                     try {
                         JSONObject jsonInput = new JSONObject(inputLine);
 
-                        // Check if the received JSON indicates it's a filter or accommodation data.
-                        if (jsonInput.has("filterType")) { // Assuming "filterType" indicates a filter JSON
+
+                        if (jsonInput.has("filterType")) {
                             if (jsonInput.getString("filterType").equals("accommodationFilter")) {
                                 // Process filter
                                 Map<String, List<Accommodation>> mapResults = processMapPhase(jsonInput);
-                                // After processing, send the intermediate key-value pairs to the Master
                                 sendResultsToReducer(mapResults);
                             }
                         } else {
-                            // Assume it's an accommodation JSON if no filterType is present
                             Accommodation accommodation = new Accommodation(jsonInput);
                             accommodations.addAccommodation(accommodation);
                             System.out.println("Accommodation added: " + accommodation.getRoomName());
@@ -98,7 +95,7 @@ public class Worker implements Runnable {
     }
 
     private void sendResultsToReducer(Map<String, List<Accommodation>> mapResults) {
-        String reducerHost = "localhost"; // Replace with actual host
+        String reducerHost = "localhost";
         int reducerPort = 5006;
 
         try (Socket socket = new Socket(reducerHost, reducerPort);

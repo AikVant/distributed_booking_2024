@@ -11,10 +11,8 @@ public class ClientApp {
     private static final int CLIENT_PORT = 5007;
 
     public static void start() {
-        // Start server thread to listen for results from Master
         new Thread(ClientApp::startServer).start();
 
-        // Continuously accept new filter inputs
         while (true) {
             Scanner in = new Scanner(System.in);
             System.out.println("Enter filters to send to Master or type 'exit' to quit:");

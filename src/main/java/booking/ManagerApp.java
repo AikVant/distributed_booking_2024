@@ -91,7 +91,6 @@ public class ManagerApp {
 
     private void viewBookings(Scanner scanner) {
         System.out.println("--- View Bookings ---");
-        // Den kserw an xreiazetai, isws xreiastei na ginei xrhsh ths Reduce class basika
         System.out.println("TODO.");
     }
 
