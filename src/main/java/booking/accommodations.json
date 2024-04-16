@@ -7,7 +7,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -17,7 +21,11 @@
     "stars": "3",
     "numOfReviews": "10",
     "roomImage": "src/pictures/bunTh.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -27,7 +35,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -37,7 +49,11 @@
     "stars": "3",
     "numOfReviews": "25",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "251"
+    "pricePerNight": "251",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -47,7 +63,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -57,7 +77,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -66,7 +90,11 @@
     "stars": "3",
     "numOfReviews": "34",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "111"
+    "pricePerNight": "111",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -76,7 +104,13 @@
   "stars": "5",
   "numOfReviews": "10003",
   "roomImage": "src/pictures/resort.jpg",
-  "pricePerNight": "990"},
+  "pricePerNight": "990",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
+
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -85,7 +119,12 @@
     "stars": "5",
     "numOfReviews": "320",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "55"},
+    "pricePerNight": "55",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "22",
@@ -94,8 +133,11 @@
     "stars": "4",
     "numOfReviews": "107",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "100"
-
+    "pricePerNight": "100",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
 
   {"accType": "Bed and Breakfast",
@@ -105,7 +147,11 @@
     "stars": "4",
     "numOfReviews": "500",
     "roomImage": "src/pictures/kifissiaBB.jpg",
-    "pricePerNight": "153"
+    "pricePerNight": "153",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Luxury Hotel",
@@ -115,7 +161,11 @@
     "stars": "5",
     "numOfReviews": "12",
     "roomImage": "src/pictures/london.jpg",
-    "pricePerNight": "36"
+    "pricePerNight": "36",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -125,7 +175,11 @@
     "stars": "2",
     "numOfReviews": "110",
     "roomImage": "src/pictures/bung.jpg",
-    "pricePerNight": "133"
+    "pricePerNight": "133",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -135,7 +189,11 @@
     "stars": "5",
     "numOfReviews": "33",
     "roomImage": "src/pictures/volos2.jpg",
-    "pricePerNight": "68"
+    "pricePerNight": "68",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -145,7 +203,11 @@
     "stars": "4",
     "numOfReviews": "85",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "201"
+    "pricePerNight": "201",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -155,7 +217,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -165,7 +231,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "22",
@@ -174,7 +244,11 @@
     "stars": "2",
     "numOfReviews": "1112",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "110"
+    "pricePerNight": "110",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -184,7 +258,13 @@
     "stars": "5",
     "numOfReviews": "10063",
     "roomImage": "src/pictures/sc.jpg",
-    "pricePerNight": "1000"},
+    "pricePerNight": "1000",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
+
 
   {"accType": "Cabin",
     "roomName": "7",
@@ -193,7 +273,12 @@
     "stars": "5",
     "numOfReviews": "21",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "120"},
+    "pricePerNight": "120",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "225",
@@ -202,7 +287,11 @@
     "stars": "4",
     "numOfReviews": "18",
     "roomImage": "src/pictures/at.jpg",
-    "pricePerNight": "26"
+    "pricePerNight": "26",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -213,7 +302,11 @@
     "stars": "5",
     "numOfReviews": "400",
     "roomImage": "src/pictures/marousi.jpg",
-    "pricePerNight": "143"
+    "pricePerNight": "143",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Luxury Hotel",
@@ -223,7 +316,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -233,7 +330,11 @@
     "stars": "3",
     "numOfReviews": "25",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "201"
+    "pricePerNight": "201",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -243,7 +344,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -253,7 +358,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -262,7 +371,11 @@
     "stars": "3",
     "numOfReviews": "133",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "50"
+    "pricePerNight": "50",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Motel",
@@ -272,7 +385,13 @@
     "stars": "5",
     "numOfReviews": "10003",
     "roomImage": "src/pictures/resort.jpg",
-    "pricePerNight": "999"},
+    "pricePerNight": "999",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
+
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -281,7 +400,12 @@
     "stars": "5",
     "numOfReviews": "320",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "80"},
+    "pricePerNight": "80",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "27",
@@ -290,7 +414,11 @@
     "stars": "4",
     "numOfReviews": "100",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "60"
+    "pricePerNight": "60",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
   {
@@ -301,7 +429,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -311,7 +443,11 @@
     "stars": "3",
     "numOfReviews": "10",
     "roomImage": "src/pictures/bunTh.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -321,7 +457,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -331,7 +471,11 @@
     "stars": "4",
     "numOfReviews": "25",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "201"
+    "pricePerNight": "201",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -341,7 +485,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -351,7 +499,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -361,7 +513,12 @@
     "stars": "5",
     "numOfReviews": "10003",
     "roomImage": "src/pictures/resort.jpg",
-    "pricePerNight": "999"},
+    "pricePerNight": "999",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -370,7 +527,12 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "60"},
+    "pricePerNight": "60",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "22",
@@ -379,7 +541,11 @@
     "stars": "4",
     "numOfReviews": "107",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "96"
+    "pricePerNight": "96",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -391,7 +557,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -401,7 +571,11 @@
     "stars": "3",
     "numOfReviews": "10",
     "roomImage": "src/pictures/bunTh.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -411,7 +585,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -421,7 +599,11 @@
     "stars": "3",
     "numOfReviews": "25",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "201"
+    "pricePerNight": "201",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -431,7 +613,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -441,7 +627,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -450,7 +640,11 @@
     "stars": "5",
     "numOfReviews": "123",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "121"
+    "pricePerNight": "121",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -460,7 +654,12 @@
     "stars": "5",
     "numOfReviews": "10003",
     "roomImage": "src/pictures/resort.jpg",
-    "pricePerNight": "999"},
+    "pricePerNight": "999",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -469,7 +668,12 @@
     "stars": "5",
     "numOfReviews": "1111",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "11"},
+    "pricePerNight": "11",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "229",
@@ -478,7 +682,11 @@
     "stars": "4",
     "numOfReviews": "107",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "96"
+    "pricePerNight": "96",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -489,7 +697,11 @@
     "stars": "4",
     "numOfReviews": "509",
     "roomImage": "src/pictures/met.jpg",
-    "pricePerNight": "175"
+    "pricePerNight": "175",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Luxury Hotel",
@@ -499,7 +711,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -509,7 +725,11 @@
     "stars": "3",
     "numOfReviews": "10",
     "roomImage": "src/pictures/bunTh.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -519,7 +739,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -529,7 +753,11 @@
     "stars": "3",
     "numOfReviews": "258",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "12"
+    "pricePerNight": "12",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -539,7 +767,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -549,7 +781,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -558,7 +794,11 @@
     "stars": "3",
     "numOfReviews": "34",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "111"
+    "pricePerNight": "111",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -568,7 +808,12 @@
     "stars": "5",
     "numOfReviews": "10003",
     "roomImage": "src/pictures/resort.jpg",
-    "pricePerNight": "999"},
+    "pricePerNight": "999",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -577,7 +822,12 @@
     "stars": "3",
     "numOfReviews": "344",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "92"},
+    "pricePerNight": "92",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "22",
@@ -586,7 +836,11 @@
     "stars": "3",
     "numOfReviews": "17",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "50"
+    "pricePerNight": "50",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -597,7 +851,11 @@
     "stars": "4",
     "numOfReviews": "500",
     "roomImage": "src/pictures/w.jpg",
-    "pricePerNight": "147"
+    "pricePerNight": "147",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Luxury Hotel",
@@ -607,7 +865,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -617,7 +879,11 @@
     "stars": "5",
     "numOfReviews": "170",
     "roomImage": "src/pictures/w.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -627,7 +893,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -637,7 +907,11 @@
     "stars": "3",
     "numOfReviews": "250",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "210"
+    "pricePerNight": "210",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -647,7 +921,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -657,7 +935,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -666,7 +948,11 @@
     "stars": "3",
     "numOfReviews": "34",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "111"
+    "pricePerNight": "111",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -676,7 +962,12 @@
     "stars": "5",
     "numOfReviews": "10003",
     "roomImage": "src/pictures/resort.jpg",
-    "pricePerNight": "999"},
+    "pricePerNight": "999",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -685,7 +976,12 @@
     "stars": "4",
     "numOfReviews": "20",
     "roomImage": "src/pictures/met.jpg",
-    "pricePerNight": "71"},
+    "pricePerNight": "71",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "22",
@@ -694,7 +990,11 @@
     "stars": "3",
     "numOfReviews": "1070",
     "roomImage": "src/pictures/athensAp.jpg",
-    "pricePerNight": "56"
+    "pricePerNight": "56",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -705,7 +1005,11 @@
     "stars": "6",
     "numOfReviews": "500",
     "roomImage": "src/pictures/kifissiaBB.jpg",
-    "pricePerNight": "143"
+    "pricePerNight": "143",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Luxury Hotel",
@@ -715,7 +1019,11 @@
     "stars": "4",
     "numOfReviews": "15",
     "roomImage": "src/pictures/luxuryHotel.jpg",
-    "pricePerNight": "35"
+    "pricePerNight": "35",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bungalow",
@@ -725,7 +1033,11 @@
     "stars": "3",
     "numOfReviews": "10",
     "roomImage": "src/pictures/bunTh.jpg",
-    "pricePerNight": "130"
+    "pricePerNight": "130",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -735,7 +1047,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/v.jpg",
-    "pricePerNight": "66"
+    "pricePerNight": "66",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Bed and Breakfast",
@@ -745,7 +1061,11 @@
     "stars": "3",
     "numOfReviews": "25",
     "roomImage": "src/pictures/bbAth.jpg",
-    "pricePerNight": "201"
+    "pricePerNight": "201",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Hotel",
@@ -755,7 +1075,11 @@
     "stars": "4",
     "numOfReviews": "30",
     "roomImage": "src/pictures/whiteTower.jpg",
-    "pricePerNight": "70"
+    "pricePerNight": "70",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Maisonette",
@@ -765,7 +1089,11 @@
     "stars": "3",
     "numOfReviews": "32",
     "roomImage": "src/pictures/maisonetteL.jpg",
-    "pricePerNight": "99"
+    "pricePerNight": "99",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {"accType": "Motel",
     "roomName": "31",
@@ -774,7 +1102,11 @@
     "stars": "3",
     "numOfReviews": "34",
     "roomImage": "src/pictures/crete.jpg",
-    "pricePerNight": "111"
+    "pricePerNight": "111",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   },
   {
     "accType": "Resort",
@@ -784,7 +1116,12 @@
     "stars": "5",
     "numOfReviews": "1003",
     "roomImage": "src/pictures/milano.jpg",
-    "pricePerNight": "900"},
+    "pricePerNight": "900",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Cabin",
     "roomName": "5",
@@ -793,7 +1130,12 @@
     "stars": "2",
     "numOfReviews": "1000",
     "roomImage": "src/pictures/trikala.jpg",
-    "pricePerNight": "41"},
+    "pricePerNight": "41",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
+  },
 
   {"accType": "Apartment",
     "roomName": "224",
@@ -802,7 +1144,11 @@
     "stars": "4",
     "numOfReviews": "100",
     "roomImage": "src/pictures/om.jpg",
-    "pricePerNight": "90"
+    "pricePerNight": "90",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
 
   },
 
@@ -813,7 +1159,11 @@
     "stars": "5",
     "numOfReviews": "505",
     "roomImage": "src/pictures/rome.jpg",
-    "pricePerNight": "213"
+    "pricePerNight": "213",
+    "availability": {
+      "availableFrom": "2024-01-01",
+      "availableTo": "2024-12-31"
+    }
   }
 
 ]

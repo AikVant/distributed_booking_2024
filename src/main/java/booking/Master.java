@@ -1,7 +1,10 @@
 package booking;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,8 +18,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Master {
-    private static final int FILTER_PORT = 5000; // Existing port for FilterWorkerThread
-    private static final int MASTER_PORT = 5004; // New port for MasterWorkerThread
+    private static final int MASTER_PORT_MANAGER = 5000;
+    private static final int MASTER_PORT_CLIENT = 5004;
+    private static final int MASTER_PORT_REDUCER = 5005;
+    private String clientHost = "localhost";
+    private int clientPort = 5007;
     private List<String> workerNodes;
     private List<Accommodation> accommodations;
 
@@ -26,85 +32,85 @@ public class Master {
     }
 
     public void startServer() {
-        // Start thread for handling client requests (FilterWorkerThread)
-        new Thread(() -> listenOnPort(FILTER_PORT, true)).start();
-
-        // Start thread for handling manager requests (MasterWorkerThread)
-        new Thread(() -> listenOnPort(MASTER_PORT, false)).start();
+        new Thread(() -> listenOnPort(MASTER_PORT_MANAGER, "Manager")).start();
+        new Thread(() -> listenOnPort(MASTER_PORT_CLIENT, "Client")).start();
+        new Thread(() -> listenOnPort(MASTER_PORT_REDUCER, "Reducer")).start();
     }
 
-    private void listenOnPort(int port, boolean isFilter) {
+    private void listenOnPort(int port, String source) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("Server started on port " + port);
-
+            System.out.println("Server started for " + source + " on port " + port);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                if (isFilter) {
-                    new FilterWorkerThread(clientSocket, this).start();
-                } else {
-                    new MasterWorkerThread(clientSocket, this).start();
+                if ("Manager".equals(source)) {
+                    handleManager(clientSocket);
+                } else if ("Client".equals(source)) {
+                    handleClient(clientSocket);
+                } else if ("Reducer".equals(source)) {
+                    handleReducer(clientSocket);
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Could not listen on port " + port + ": " + e.getMessage());
         }
     }
 
-    public synchronized void filterAccommodations(JSONObject filters) {
-        try {
-            //System.out.println("Received filter JSON: " + filters.toString(2)); // debug
-            System.out.println("Accommodations available: " + accommodations);
-            List<AccommodationFilter> filteredAccommodations = accommodations.stream()
-                    .filter(acc -> acc.getArea().getCity().equalsIgnoreCase(filters.getString("area")))
-                    .filter(acc -> acc.getNumOfPersons().equals(filters.getInt("numOfPersons")))
-                    .filter(acc -> acc.getPricePerNight() >= filters.getJSONObject("price").getInt("minPrice") &&
-                            acc.getPricePerNight() <= filters.getJSONObject("price").getInt("maxPrice"))
-                    .filter(acc -> {
-                        int stars = acc.getStars();
-                        int minRanking = filters.getJSONObject("stars").getInt("minRanking");
-                        int maxRanking = filters.getJSONObject("stars").getInt("maxRanking");
-                        return stars >= minRanking && stars <= maxRanking;
-                    })
-                    .map(acc -> new AccommodationFilter(
-                            acc.getAccType(),
-                            acc.getRoomName(),
-                            acc.getNumOfPersons(),
-                            acc.getArea(),
-                            acc.getStars(),
-                            acc.getNumOfReviews(),
-                            acc.getRoomImage(),
-                            acc.getPricePerNight(),
-                            filters.getJSONObject("price").getInt("minPrice"),
-                            filters.getJSONObject("price").getInt("maxPrice"),
-                            filters.getJSONObject("stars").getInt("minRanking"),
-                            filters.getJSONObject("stars").getInt("maxRanking"),
-                            LocalDate.parse(filters.getJSONObject("dates").getString("dateFrom"), DateTimeFormatter.ISO_LOCAL_DATE),
-                            LocalDate.parse(filters.getJSONObject("dates").getString("dateTo"), DateTimeFormatter.ISO_LOCAL_DATE)
-                    ))
-                    .collect(Collectors.toList());
+    private void handleManager(Socket clientSocket) {
+        // Start a new thread for each manager connection using MasterWorkerThread
+        new MasterWorkerThread(clientSocket, this).start();
+    }
 
-            System.out.println("Filtered Accommodations Count: " + filteredAccommodations.size());//debug
-            filteredAccommodations.forEach(acc -> System.out.println(acc.toString()));//debug
-
-        } catch (JSONException | DateTimeParseException e) {
-            System.err.println("Error parsing JSON or dates: " + e.getMessage());
+    private void handleClient(Socket clientSocket) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+            String input;
+            while ((input = reader.readLine()) != null) {
+                try {
+                    JSONObject jsonInput = new JSONObject(input);
+                    if (jsonInput.has("filterType")) { // Ensuring it's a filter JSON
+                        System.out.println("Received filter from client: " + jsonInput.toString());
+                        distributeFilters(jsonInput);  // Distribute filters to workers
+                    } else {
+                        System.out.println("Received unexpected data type from client.");
+                    }
+                } catch (JSONException e) {
+                    System.err.println("JSON parsing error from client data: " + e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error handling client connection: " + e.getMessage());
+        } finally {
+            try {
+                clientSocket.close(); // Ensure the socket is always closed after handling
+            } catch (IOException e) {
+                System.err.println("Error closing client socket: " + e.getMessage());
+            }
         }
-        //Na ginei:
-        //distributeFilteredAccommodations(filteredAccommodations);
     }
 
-    private void distributeFilters(List<AccommodationFilter> filters){
+    private void handleReducer(Socket socket) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+            String jsonData = reader.readLine();
+            if (jsonData != null) {
+                System.out.println("Received results from Reducer: " + jsonData);
+                forwardResultsToClient(jsonData);
+            }
+        } catch (IOException e) {
+            System.err.println("Error receiving results from Reducer: " + e.getMessage());
+        }
+    }
 
-    }
-    public void addAccommodationFromJson(JSONObject jsonAccommodation){
-        Accommodation accommodation = new Accommodation(jsonAccommodation);
-        accommodations.add(accommodation);
+    private void forwardResultsToClient(String results) {
+        System.out.println("Forwarding results to ClientApp...");
+        try (Socket socket = new Socket(clientHost, clientPort);
+             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
+            writer.println(results);
+            System.out.println("Results forwarded to ClientApp.");
+        } catch (IOException e) {
+            System.err.println("Failed to send results to ClientApp: " + e.getMessage());
+        }
     }
 
-    public synchronized void addAccommodation(Accommodation accommodation){
-        accommodations.add(accommodation);
-        System.out.println(accommodations);
-    }
+
     public synchronized void addAccommodation(Path jsonFilePath, int index) {
         Accommodation accommodation = ReadJson.readFile(jsonFilePath, index);
         accommodations.add(accommodation);
@@ -143,11 +149,36 @@ public class Master {
             jsonAccommodation.put("numOfReviews", accommodation.getNumOfReviews().toString());
             jsonAccommodation.put("roomImage", accommodation.getRoomImage().getAddress());
             jsonAccommodation.put("pricePerNight", accommodation.getPricePerNight().toString());
+
+            JSONObject jsonAvailability = new JSONObject();
+            jsonAvailability.put("availableFrom", accommodation.getAvailableFrom().toString());
+            jsonAvailability.put("availableTo", accommodation.getAvailableTo().toString());
+            jsonAccommodation.put("availability", jsonAvailability);
+
             out.println(jsonAccommodation.toString());
             System.out.println("Sent " + accommodation.getRoomName() + " to worker at " + workerInfo);
         } catch (IOException e) {
             System.err.println("Could not send accommodation to worker " + workerInfo);
             e.printStackTrace();
+        }
+    }
+    private void distributeFilters(JSONObject filters) {
+        for (String workerNode : workerNodes) {
+            sendFiltersToWorker(workerNode, filters);
+        }
+    }
+
+    private void sendFiltersToWorker(String workerInfo, JSONObject filters) {
+        String[] parts = workerInfo.split(":");
+        String workerHost = parts[0];
+        int workerPort = Integer.parseInt(parts[1]);
+
+        try (Socket socket = new Socket(workerHost, workerPort);
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
+            out.println(filters.toString());
+            System.out.println("Filters sent to worker at " + workerInfo);
+        } catch (IOException e) {
+            System.err.println("Could not send filters to worker at " + workerInfo + ": " + e.getMessage());
         }
     }
     public static void main(String[] args) {

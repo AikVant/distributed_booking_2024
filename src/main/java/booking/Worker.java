@@ -3,6 +3,11 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Worker implements Runnable {
     private ServerSocket serverSocket;
@@ -48,14 +53,24 @@ public class Worker implements Runnable {
                 while ((inputLine = in.readLine()) != null) {
                     System.out.println("Received from Master: " + inputLine);
                     try {
+                        JSONObject jsonInput = new JSONObject(inputLine);
 
-                        JSONObject jsonAccommodation = new JSONObject(inputLine);
-                        Accommodation accommodation = new Accommodation(jsonAccommodation);
-                        accommodations.addAccommodation(accommodation);
-
-                        System.out.println("Accommodation added: " + accommodation.getRoomName());
+                        // Check if the received JSON indicates it's a filter or accommodation data.
+                        if (jsonInput.has("filterType")) { // Assuming "filterType" indicates a filter JSON
+                            if (jsonInput.getString("filterType").equals("accommodationFilter")) {
+                                // Process filter
+                                Map<String, List<Accommodation>> mapResults = processMapPhase(jsonInput);
+                                // After processing, send the intermediate key-value pairs to the Master
+                                sendResultsToReducer(mapResults);
+                            }
+                        } else {
+                            // Assume it's an accommodation JSON if no filterType is present
+                            Accommodation accommodation = new Accommodation(jsonInput);
+                            accommodations.addAccommodation(accommodation);
+                            System.out.println("Accommodation added: " + accommodation.getRoomName());
+                        }
                     } catch (Exception e) {
-                        System.err.println("Error parsing accommodation JSON: " + e.getMessage());
+                        System.err.println("Error handling input: " + e.getMessage());
                     }
                 }
             } catch (IOException e) {
@@ -64,6 +79,37 @@ public class Worker implements Runnable {
         }).start();
     }
 
+    private Map<String, List<Accommodation>> processMapPhase(JSONObject filters) {
+        Map<String, List<Accommodation>> mapResults = new HashMap<>();
+        for (Accommodation accommodation : accommodations.getAccommodationList()) {
+            if (accommodation.matches(filters)) {
+                String key = createKeyForAccommodation(accommodation, filters);
+                List<Accommodation> tempList = mapResults.getOrDefault(key, new ArrayList<>());
+                tempList.add(accommodation);
+                mapResults.put(key, tempList);
+            }
+        }
+        return mapResults;
+    }
+
+    private String createKeyForAccommodation(Accommodation accommodation, JSONObject filters) {
+        // Create a unique key based on the accommodation and the filters.
+        return accommodation.getArea().toString() + ":" + filters.optInt("price");
+    }
+
+    private void sendResultsToReducer(Map<String, List<Accommodation>> mapResults) {
+        String reducerHost = "localhost"; // Replace with actual host
+        int reducerPort = 5006;
+
+        try (Socket socket = new Socket(reducerHost, reducerPort);
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
+            JSONObject json = new JSONObject(mapResults); // Serialization might need custom handling
+            out.println(json.toString());
+            System.out.println("Mapped results sent to reducer.");
+        } catch (IOException e) {
+            System.err.println("Failed to send mapped results to reducer: " + e.getMessage());
+        }
+    }
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Error: Port Number ");

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class AccommodationList {
     private List<Accommodation> accommodationList = new ArrayList<>();
@@ -58,6 +59,10 @@ public class AccommodationList {
             s.append(accommodation.toString()).append("\n");
         }
         return s.toString();
+    }
+
+    public Stream<Accommodation> stream() {
+        return accommodationList.stream();
     }
 
     public void main(String[] args) {

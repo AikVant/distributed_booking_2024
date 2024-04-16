@@ -20,6 +20,8 @@ public class Accommodation implements Serializable {
     private Integer numOfReviews;
     private Image roomImage;
     private Integer pricePerNight;
+    private LocalDate availableFrom;
+    private LocalDate availableTo;
 
     public Accommodation() {
     }
@@ -35,6 +37,9 @@ public class Accommodation implements Serializable {
        this.numOfReviews = obj.getInt("numOfReviews");
        this.roomImage = new Image(obj.getString("roomImage"));
        this.pricePerNight = obj.getInt("pricePerNight");
+       JSONObject jsonAvailability = obj.getJSONObject("availability");
+       this.availableFrom = LocalDate.parse(jsonAvailability.getString("availableFrom"));
+       this.availableTo = LocalDate.parse(jsonAvailability.getString("availableTo"));
    }
 
 
@@ -48,6 +53,52 @@ public class Accommodation implements Serializable {
         this.roomImage = roomImage;
         this.pricePerNight = pricePerNight;
     }
+
+    public boolean matches(JSONObject filters) {
+        // Area
+        if (filters.has("area") && !this.area.getCity().equalsIgnoreCase(filters.getString("area"))) {
+            return false;
+        }
+
+        // Number of Persons
+        if (filters.has("numOfPersons") && (this.numOfPersons == null || this.numOfPersons < filters.getInt("numOfPersons"))) {
+            return false;
+        }
+
+        // Price Range
+        if (filters.has("price")) {
+            JSONObject priceFilter = filters.getJSONObject("price");
+            int minPrice = priceFilter.getInt("minPrice");
+            int maxPrice = priceFilter.getInt("maxPrice");
+            if (this.pricePerNight == null || this.pricePerNight < minPrice || this.pricePerNight > maxPrice) {
+                return false;
+            }
+        }
+
+        // Star Ranking
+        if (filters.has("stars")) {
+            JSONObject starsFilter = filters.getJSONObject("stars");
+            int minRanking = starsFilter.getInt("minRanking");
+            int maxRanking = starsFilter.getInt("maxRanking");
+            if (this.stars == null || this.stars < minRanking || this.stars > maxRanking) {
+                return false;
+            }
+        }
+
+        // Dates
+        if (filters.has("dates")) {
+            JSONObject datesFilter = filters.getJSONObject("dates");
+            LocalDate dateFrom = LocalDate.parse(datesFilter.getString("dateFrom"));
+            LocalDate dateTo = LocalDate.parse(datesFilter.getString("dateTo"));
+            if (availableFrom == null || availableTo == null ||
+                    !availableFrom.isBefore(dateTo) || !availableTo.isAfter(dateFrom)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     public String getAccType() {
         return accType;
@@ -118,7 +169,21 @@ public class Accommodation implements Serializable {
     public int getRanking() {
         return getStars();
     }
+    public LocalDate getAvailableFrom() {
+        return availableFrom;
+    }
 
+    public void setAvailableFrom(LocalDate availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public LocalDate getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(LocalDate availableTo) {
+        this.availableTo = availableTo;
+    }
 
     @Override
     public String toString() {
