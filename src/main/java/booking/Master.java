@@ -105,12 +105,10 @@ public class Master {
         }
     }
 
-
     public synchronized void addAccommodation(Path jsonFilePath, int index) {
         Accommodation accommodation = ReadJson.readFile(jsonFilePath, index);
         accommodations.add(accommodation);
 
-        //Stelnei ean accommodation sto swsto worker analoga me to onoma tou dwmatiou
         String workerInfo = getWorkerNode(accommodation.getRoomName());
         sendAccommodationToWorker(workerInfo, accommodation);
     }

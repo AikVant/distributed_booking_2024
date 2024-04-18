@@ -59,6 +59,7 @@ public class ManagerApp {
             }
         }
     }
+
     private void sendAllAccommodations(){
         final int totalAccommodations = 83;
         for (int i = 0; i <totalAccommodations; i++){

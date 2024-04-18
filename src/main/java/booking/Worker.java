@@ -28,6 +28,7 @@ public class Worker implements Runnable {
     public AccommodationList getAccommodations() {
         return accommodations;
     }
+
     public Accommodation getAccommodations(int index) {
         return accommodations.get(index);
     }
@@ -53,7 +54,6 @@ public class Worker implements Runnable {
                     System.out.println("Received from Master: " + inputLine);
                     try {
                         JSONObject jsonInput = new JSONObject(inputLine);
-
 
                         if (jsonInput.has("filterType")) {
                             if (jsonInput.getString("filterType").equals("accommodationFilter")) {
